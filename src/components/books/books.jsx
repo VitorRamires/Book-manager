@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { CreateGlobalContext } from "../../context/globalContextBooks.jsx";
 import { CreateGlobalAuthors } from "../../context/globalContextAuthors.jsx";
-
-import { Message } from "../messages/messages.jsx";
+import { Table } from "../Table.jsx";
+import { Book } from "./book.jsx";
 
 import * as Dialog from "@radix-ui/react-dialog";
 import {
@@ -11,12 +11,9 @@ import {
   ItemModal,
   ModalActions,
   DialogTrigger,
-  TableBox,
-  TableWrapper,
 } from "../styles/tables.js";
 import { Center } from "../../global.js";
 import img from "../../img/book.svg";
-import Book from "./book.jsx";
 
 export function Livros() {
   const { books, handleSubmit, register, createBookHandle } =
@@ -34,6 +31,7 @@ export function Livros() {
           <ModalBox>
             <Dialog.Title>Crie seu livro</Dialog.Title>
             <Dialog.Description></Dialog.Description>
+
             <form onSubmit={handleSubmit(createBookHandle)}>
               <ItemModal>
                 <label htmlFor="bookName">Nome do livro</label>
@@ -78,37 +76,18 @@ export function Livros() {
                 </Dialog.Close>
               </ModalActions>
             </form>
+
+            
           </ModalBox>
         </DialogOverlay>
       </Dialog.Root>
 
-      <TableWrapper>
-        {books.length !== 0 ? (
-          <TableBox>
-            <thead>
-              <tr>
-                <td>Id</td>
-                <td>Livro</td>
-                <td>Autor</td>
-                <td>Páginas</td>
-                <td>Ações</td>
-              </tr>
-            </thead>
-
-            <tbody>
-              {books.map((book) => {
-                return <Book key={book.id} book={book} />;
-              })}
-            </tbody>
-          </TableBox>
-        ) : (
-          <>
-            <Message image={img} section="Livro" />
-          </>
-        )}
-      </TableWrapper>
-
-      
+      <Table
+        infoSection={books}
+        img={img}
+        tableHead={["Id", "Livro", "Autor", "Páginas", "Ações"]}
+        SectionComponent={Book}
+      />
     </Center>
   );
 }

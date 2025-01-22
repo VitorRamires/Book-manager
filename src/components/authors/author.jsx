@@ -3,23 +3,23 @@ import { useState } from "react";
 import { Edit } from "./features/edit.jsx";
 import { Preview } from "./features/view.jsx";
 import { Remove } from "./features/remove.jsx";
-import { Actions } from "../styles/tables.js";
 
+import { Actions } from "../styles/tables.js";
 import PropTypes from "prop-types";
 
-export function Author({ author }) {
+export function Author({ componentInfo }) {
   const [specificAuthorId, setSpecificAuthorId] = useState(null);
 
   return (
-    <tr key={author.authorId}>
-      <td>{author.authorId}</td>
-      <td>{author.author}</td>
-      <td>{author.email}</td>
+    <tr key={componentInfo.authorId}>
+      <td>{componentInfo.authorId}</td>
+      <td>{componentInfo.author}</td>
+      <td>{componentInfo.email}</td>
       <Actions>
-        <Edit authorIdEdit={author.authorId} />
-        <Preview authorIdPreview={author.authorId} />
+        <Edit authorIdEdit={componentInfo.authorId} />
+        <Preview authorIdPreview={componentInfo.authorId} />
         <Remove
-          authorUniqueId={author.authorId}
+          authorUniqueId={componentInfo.authorId}
           setSpecificAuthorId={setSpecificAuthorId}
           specificAuthorId={specificAuthorId}
         />
@@ -29,7 +29,7 @@ export function Author({ author }) {
 }
 
 Author.propTypes = {
-  author: PropTypes.shape({
+  componentInfo: PropTypes.shape({
     authorId: PropTypes.number.isRequired,
     author: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
