@@ -37,7 +37,7 @@ export const DialogTrigger = styled(Dialog.Trigger)`
   cursor: pointer;
   border-radius: 5px;
   transition: 0.2s;
-  background:none;
+  background: none;
 `;
 
 export const ModalActions = styled.div`
@@ -51,7 +51,7 @@ export const ModalActions = styled.div`
     width: 100px;
     padding: 10px 5px;
     cursor: pointer;
-    background-color: #47afca;
+    background-color:rgb(235, 235, 235);
     outline: none;
     border: none;
     border-radius: 5px;
@@ -61,7 +61,7 @@ export const ModalActions = styled.div`
     font-size: 1.05rem;
 
     &:hover {
-      background-color: #0abdec;
+      background-color: rgb(199, 199, 199);
     }
 
     &:disabled {
@@ -85,4 +85,17 @@ export const ModalActions = styled.div`
 export const Span = styled.span`
   font-size: 1.2rem;
   color: #263072;
+
+  &.alert {
+    color: red;
+  }
+`;
+
+export const BookList = styled.ul`
+  list-style-position: inside;
+  margin-top: 35px;
+
+  li {
+    margin-top: 8px;
+  }
 `;

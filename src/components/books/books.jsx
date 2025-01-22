@@ -2,9 +2,6 @@ import { useContext } from "react";
 import { CreateGlobalContext } from "../../context/globalContextBooks.jsx";
 import { CreateGlobalAuthors } from "../../context/globalContextAuthors.jsx";
 
-import { Edit } from "./features/edit.jsx";
-import { Preview } from "./features/view.jsx";
-import { Remove } from "./features/remove.jsx";
 import { Message } from "../messages/messages.jsx";
 
 import * as Dialog from "@radix-ui/react-dialog";
@@ -13,13 +10,13 @@ import {
   ModalBox,
   ItemModal,
   ModalActions,
-  Actions,
   DialogTrigger,
   TableBox,
   TableWrapper,
 } from "../styles/tables.js";
 import { Center } from "../../global.js";
 import img from "../../img/book.svg";
+import Book from "./book.jsx";
 
 export function Livros() {
   const { books, handleSubmit, register, createBookHandle } =
@@ -100,33 +97,7 @@ export function Livros() {
 
             <tbody>
               {books.map((book) => {
-                return (
-                  <tr key={book.id}>
-                    <td>
-                      <p>{book.id}</p>
-                    </td>
-                    <td>
-                      <p>{book.name}</p>
-                    </td>
-                    <td>
-                      <p>
-                        {
-                          authors.find(
-                            (author) => author.authorId == book.authorId
-                          )?.author
-                        }
-                      </p>
-                    </td>
-                    <td>
-                      <p>{book.pages}</p>
-                    </td>
-                    <Actions>
-                      <Edit bookId={book.id} book={book} />
-                      <Preview bookIdPreview={book.id} />
-                      <Remove bookIdRemove={book.id} />
-                    </Actions>
-                  </tr>
-                );
+                return <Book key={book.id} book={book} />;
               })}
             </tbody>
           </TableBox>
@@ -136,6 +107,8 @@ export function Livros() {
           </>
         )}
       </TableWrapper>
+
+      
     </Center>
   );
 }

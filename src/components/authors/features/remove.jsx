@@ -1,8 +1,7 @@
-/* eslint-disable react/prop-types */
-import { useContext, useEffect, useState } from "react";
-import { CreateGlobalAuthors } from "../../../context/globalContextAuthors";
+import { useState, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
-
+import { CreateGlobalContext } from "../../../context/globalContextBooks";
+import { CreateGlobalAuthors } from "../../../context/globalContextAuthors";
 import * as Dialog from "@radix-ui/react-dialog";
 import {
   DialogOverlay,
@@ -10,48 +9,46 @@ import {
   ModalActions,
   DialogTrigger,
   Span,
+  DialogDescription,
+  BookList
 } from "../../styles/remove";
 import removeLogo from "../../../img/trash.svg";
-import { CreateGlobalContext } from "../../../context/globalContextBooks";
 
-export function Remove({ authorIdRemove }) {
-  const [getAuthorIdRemove] = useState(authorIdRemove);
-  const [authorHasBooks, setAuthorHasBooks] = useState(null);
-
+export function Remove({ authorUniqueId, setSpecificAuthorId }) {
+  const { setBooks, books } = useContext(CreateGlobalContext);
   const { setAuthors } = useContext(CreateGlobalAuthors);
-  const { books, setBooks } = useContext(CreateGlobalContext)
+
+  const [authorHasBooks, setAuthorHasBooks] = useState(false);
+  const [filterAuthorBooks, setFilterAuthorBooks] = useState([]);
 
   const arraySavedOnLocal = JSON.parse(localStorage.getItem("authors"));
 
-  let filterAuthorBooks = books.filter(
-    (books) => books.authorId == getAuthorIdRemove
-  );
+  //Pegando o ID unico do author
+  function getAuthorUniqueId() {
+    setSpecificAuthorId(authorUniqueId);
 
-  // Remover Autores
-  let actualItem = arraySavedOnLocal.filter(
-    (author) => author.authorId === getAuthorIdRemove
-  )[0];
+    let removeAuthor = arraySavedOnLocal.filter(
+      (author) => author.authorId != authorUniqueId
+    );
 
-  let removeAuthor = arraySavedOnLocal.filter(
-    (author) => author.authorId != actualItem.authorId
-  );
+    let removeBooks = books.filter((book) => book.authorId != authorUniqueId);
 
-  // Remover Livros
-  let removeBooks = books.filter((book) => {
-    !filterAuthorBooks.includes(book.id), console.log(filterAuthorBooks);
-  });
+    // Remover Livros
+    setBooks(removeBooks);
+    localStorage.setItem("books", JSON.stringify(removeBooks));
 
-  function verifyAuthor() {
-    books.some((book) => book.authorId == actualItem.authorId)
-      ? setAuthorHasBooks(true)
-      : setAuthorHasBooks(false);
+    // Remover Autor
+    setAuthors(removeAuthor);
+    localStorage.setItem("authors", JSON.stringify(removeAuthor));
   }
 
-  function filterArray() {
-    setAuthors(removeAuthor);
-    setBooks(removeBooks);
-    localStorage.setItem("authors", JSON.stringify(removeAuthor));
-    localStorage.setItem("books", JSON.stringify(removeBooks));
+  //Mostrar Livros do Autor
+  function verifyAuthor() {
+    const filteredBooks = books.filter(
+      (book) => book.authorId == authorUniqueId
+    );
+    setFilterAuthorBooks(filteredBooks);
+    setAuthorHasBooks(filteredBooks.length > 0);
   }
 
   useEffect(() => {
@@ -59,48 +56,45 @@ export function Remove({ authorIdRemove }) {
   }, [books]);
 
   return (
-    <>
-      <Dialog.Root>
-        <DialogTrigger>
-          <img src={removeLogo} alt="" title="Remover" />
-        </DialogTrigger>
+    <Dialog.Root>
+      <DialogTrigger onClick={() => setSpecificAuthorId(authorUniqueId)}>
+        <img src={removeLogo} alt="Remover" title="Remover" />
+      </DialogTrigger>
 
-        <Dialog.Portal>
-          <DialogOverlay>
-            <ModalBox>
-              <Dialog.Title>
-                <Span>Deseja remover o autor?</Span>
-
-                {authorHasBooks ? (
-                  <>
-                    <Span>
-                      Removendo o autor, também removera estes livros:
-                    </Span>
-                    {filterAuthorBooks.map((book) => (
-                      <div key={book.id}>{book.name}</div>
-                    ))}
-                  </>
-                ) : (
-                  ""
-                )}
-              </Dialog.Title>
-              <Dialog.Description></Dialog.Description>
-              <ModalActions>
-                <Dialog.Close asChild>
-                  <button onClick={filterArray}>Sim</button>
-                </Dialog.Close>
-                <Dialog.Close asChild>
-                  <button>Não</button>
-                </Dialog.Close>
-              </ModalActions>
-            </ModalBox>
-          </DialogOverlay>
-        </Dialog.Portal>
-      </Dialog.Root>
-    </>
+      <Dialog.Portal>
+        <DialogOverlay>
+          <ModalBox>
+            <Dialog.Title>
+              <Span className="alert">Deseja remover o autor?</Span>
+            </Dialog.Title>
+            {authorHasBooks ? (
+              <>
+              <DialogDescription>Removendo o autor, também removerá estes livros:</DialogDescription>
+                <BookList>
+                  {filterAuthorBooks.map((book) => (
+                    <li key={book.id}>{book.name}</li>
+                  ))}
+                </BookList>
+              </>
+            ) : (
+              <Span>O autor não possui livros registrados.</Span>
+            )}
+            <ModalActions>
+              <Dialog.Close asChild>
+                <button>Não</button>
+              </Dialog.Close>
+              <Dialog.Close asChild>
+                <button onClick={getAuthorUniqueId}>Sim</button>
+              </Dialog.Close>
+            </ModalActions>
+          </ModalBox>
+        </DialogOverlay>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 }
 
 Remove.propTypes = {
-  authorIdRemove: PropTypes.number.isRequired,
+  authorUniqueId: PropTypes.number.isRequired,
+  setSpecificAuthorId: PropTypes.func.isRequired,
 };

@@ -1,10 +1,7 @@
 import { useContext } from "react";
 import { CreateGlobalAuthors } from "../../context/globalContextAuthors.jsx";
-import { Edit } from "./features/edit.jsx";
-import { Preview } from "./features/view.jsx";
-import { Remove } from "./features/remove.jsx";
 import { Message } from "../messages/messages.jsx";
-
+import { Author } from "./author.jsx";
 import { Center } from "../../global.js";
 
 import {
@@ -12,7 +9,6 @@ import {
   ModalBox,
   ItemModal,
   ModalActions,
-  Actions,
   DialogTrigger,
   TableBox,
   TableWrapper,
@@ -30,6 +26,7 @@ export function Authors() {
     setAuthorNotExistMessage,
   } = useContext(CreateGlobalAuthors);
   const { handleSubmit, register } = formMethods;
+  
 
   function resetForm() {
     formMethods.reset();
@@ -91,16 +88,7 @@ export function Authors() {
             <tbody>
               {authors.map((author) => {
                 return (
-                  <tr key={author.authorId}>
-                    <td>{author.authorId}</td>
-                    <td>{author.author}</td>
-                    <td>{author.email}</td>
-                    <Actions>
-                      <Edit authorIdEdit={author.authorId} />
-                      <Preview authorIdPreview={author.authorId} />
-                      <Remove authorIdRemove={author.authorId} />
-                    </Actions>
-                  </tr>
+                  <Author key={author.id} author={author}/>
                 );
               })}
             </tbody>
@@ -109,6 +97,9 @@ export function Authors() {
           <Message image={img} section="Autor" />
         )}
       </TableWrapper>
+
+
+
     </Center>
   );
 }

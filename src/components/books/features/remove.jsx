@@ -10,6 +10,7 @@ import {
   ModalActions,
   DialogTrigger,
   DialogDescription,
+  Span,
 } from "../../styles/remove";
 import removeLogo from "../../../img/trash.svg";
 
@@ -42,9 +43,9 @@ export function Remove({ bookIdRemove }) {
       <Dialog.Portal>
         <DialogOverlay>
           <ModalBox>
-            <Dialog.Title>Deseja remover o livro?</Dialog.Title>
+            <Dialog.Title><Span className="alert">Deseja remover o livro?</Span></Dialog.Title>
             <DialogDescription>
-              Removendo o autor, os livros serão removidos.
+              Esta Operação não pode ser desfeita
             </DialogDescription>
 
             <ModalActions>
