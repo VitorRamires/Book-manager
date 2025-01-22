@@ -26,13 +26,13 @@ export const GlobalCss = createGlobalStyle`
     font-family: "Montserrat";
   }
 
+  button{
+    padding:5px;
+  }
 
-  button, a, input, select{
-
+  button, a, input:not(.input-filter), select{
     border: 1px solid transparent;
     border-radius: 5px;
-    padding:5px;
-
       &:focus{
         border: 1px solid rgb(104, 104, 104);
         box-shadow: 0 4px 4px 0 rgba(43, 43, 43, 0.21);
@@ -52,7 +52,7 @@ export const GlobalCss = createGlobalStyle`
     transition: 0.2s;
     background-color:rgb(230, 230, 230);
 
-    &:focus {
+    &:focus:not(.input-filter) {
       color: #282828;
       border: 1px solid #199fe3;
 
@@ -86,4 +86,8 @@ export const Center = styled.div`
   border-radius: 10px;
   background-color: #e1eff6;
   bottom: 15px;
+
+  @media screen and (max-width:885px){
+    margin: 25px auto;
+  }
 `;

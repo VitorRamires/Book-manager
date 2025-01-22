@@ -115,7 +115,7 @@ export const TableWrapper = styled.div`
   width: 100%;
   overflow-x: auto;
   height: 420px;
-  padding: 10px;
+  padding: 10px 10px 10px 0;
 `;
 
 export const TableBox = styled.table`
@@ -190,4 +190,38 @@ export const AlreadyCreated = styled.p`
   margin-top: 20px;
   font-size: 0.95rem;
   color: #ff5858;
+`;
+
+export const InputFilter = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  background-color: rgb(233, 233, 233);
+  padding: 0 15px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: 0.2s;
+
+  &:focus-within {
+    border-color: #199fe3;
+    box-shadow: 0 4px 4px 0 rgba(43, 43, 43, 0.21);
+
+    img {
+      width: 25px;
+    }
+  }
+
+  input {
+    background-color: transparent;
+    width: 100%;
+    margin: 0;
+  }
+
+  img {
+    width: 20px;
+    height: auto;
+    transition: 0.2s;
+  }
 `;

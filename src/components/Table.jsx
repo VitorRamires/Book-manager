@@ -1,34 +1,61 @@
-import { Message } from "../components/messages/messages.jsx";
-import { TableBox, TableWrapper } from "../components/styles/tables.js";
-
+import { useState } from "react";
 import PropTypes from "prop-types";
+import { Message } from "../components/messages/messages.jsx";
+import {
+  TableBox,
+  TableWrapper,
+  InputFilter,
+} from "../components/styles/tables.js";
+import lupa from "../img/lupa.svg";
 
 export function Table({ infoSection, img, tableHead, SectionComponent }) {
+  const [inputText, setInputText] = useState("");
+
+  const infoFiltered = infoSection.filter((info) =>
+    Object.values(info).some((objectValue) => {
+      return objectValue.toString().toLowerCase().includes(inputText.toLowerCase());
+    })
+  );
 
   return (
-    <TableWrapper>
-      {infoSection.length !== 0 ? (
-        <TableBox>
-          <thead>
-            <tr>
-              {tableHead.map((head, index) => {
-                return <td key={index}>{head}</td>;
-              })}
-            </tr>
-          </thead>
+    <>
+      <InputFilter className="filter-info">
+        <input
+          type="text"
+          className="input-filter"
+          value={inputText}
+          onChange={({ target }) => {
+            setInputText(target.value);
+          }}
+          placeholder="Pesquise por qualquer informação aqui"
+        />
+        <img src={lupa} alt="" />
+      </InputFilter>
 
-          <tbody>
-            {infoSection.map((info) => {
-              return <SectionComponent key={info.authorId} componentInfo={info} />;
-            })}
-          </tbody>
-        </TableBox>
-      ) : (
-        <>
-          <Message image={img} section="Livro" />
-        </>
-      )}
-    </TableWrapper>
+      <TableWrapper>
+        {infoFiltered.length !== 0 ? (
+          <TableBox>
+            <thead>
+              <tr>
+                {tableHead.map((head, index) => {
+                  return <td key={index}>{head}</td>;
+                })}
+              </tr>
+            </thead>
+
+            <tbody>
+              {infoFiltered.map((info, index) => {
+                return <SectionComponent key={index} componentInfo={info} />;
+              })}
+            </tbody>
+          </TableBox>
+        ) : (
+          <>
+            <Message image={img} section="Livro" />
+          </>
+        )}
+      </TableWrapper>
+    </>
   );
 }
 
