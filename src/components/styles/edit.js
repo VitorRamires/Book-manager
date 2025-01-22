@@ -31,13 +31,8 @@ export const ModalBox = styled(Dialog.Content)`
 `;
 
 export const DialogTrigger = styled(Dialog.Trigger)`
-  border: 2px solid #bbb;
-  outline: none;
-  border: none;
   cursor: pointer;
-  border-radius: 5px;
-  transition: 0.2s;
-  background:none;
+  background-color: transparent;
 `;
 
 export const ItemModal = styled.div`

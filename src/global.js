@@ -26,21 +26,35 @@ export const GlobalCss = createGlobalStyle`
     font-family: "Montserrat";
   }
 
+
+  button, a, input, select{
+
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding:5px;
+
+      &:focus{
+        border: 1px solid rgb(104, 104, 104);
+        box-shadow: 0 4px 4px 0 rgba(43, 43, 43, 0.21);
+        outline: none;
+      }
+    }
+
+
   input, select {
     width: 90%;
     padding: 15px 9px;
-    border: 2px solid #bbb;
+    border:1px solid transparent;
     outline: none;
     border-radius: 5px;
     margin-top: 5px;
     font-family: "Montserrat", Sans-serif;
     transition: 0.2s;
+    background-color:rgb(230, 230, 230);
 
     &:focus {
-      border-color: #59d6f8;
-      background-color:#e1eff6;
-      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
       color: #282828;
+      border: 1px solid #199fe3;
 
       &::placeholder {
         color:rgb(121, 121, 121);
@@ -52,9 +66,7 @@ export const GlobalCss = createGlobalStyle`
         ::-ms-input-placeholder {
           color:rgb(121, 121, 121);
         }
-  
     }
-
   }
 
   @keyframes hoverBtn {
