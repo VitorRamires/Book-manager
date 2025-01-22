@@ -2,7 +2,6 @@ import { useState, useContext } from "react";
 import { CreateGlobalContext } from "../../../context/globalContextBooks";
 import PropTypes from "prop-types";
 
-
 import * as Dialog from "@radix-ui/react-dialog";
 import {
   DialogOverlay,
@@ -14,21 +13,25 @@ import {
 } from "../../styles/remove";
 import removeLogo from "../../../img/trash.svg";
 
-
+/**
+ * Component to remove a book
+ *
+ * @param {number} props.bookIdRemove - ID of book for remove
+ * @returns {JSX.Element}
+ */
 export function Remove({ bookIdRemove }) {
-  const { setBooks } = useContext(CreateGlobalContext);
-
   const [getIdAuthorRemove] = useState(bookIdRemove);
 
-  const authorsSavedOnLocal = JSON.parse(localStorage.getItem("books"));
+  const { setBooks, books } = useContext(CreateGlobalContext);
 
-  let actualItem = authorsSavedOnLocal.filter(
-    (item) => item.id === getIdAuthorRemove
-  )[0];
-  let removedsArray = authorsSavedOnLocal.filter(
-    (item) => item.id !== actualItem.id
-  );
+  let actualItem = books.filter((item) => item.id === getIdAuthorRemove)[0];
+  let removedsArray = books.filter((item) => item.id !== actualItem.id);
 
+  /**
+   * Function to save the filtered books on state and save them on localStorage
+   *
+   * @return {void}
+   */
   function filterArray() {
     localStorage.setItem("books", JSON.stringify(removedsArray));
     setBooks(removedsArray);
@@ -43,7 +46,9 @@ export function Remove({ bookIdRemove }) {
       <Dialog.Portal>
         <DialogOverlay>
           <ModalBox>
-            <Dialog.Title><Span className="alert">Deseja remover o livro?</Span></Dialog.Title>
+            <Dialog.Title>
+              <Span className="alert">Deseja remover o livro?</Span>
+            </Dialog.Title>
             <DialogDescription>
               Esta Operação não pode ser desfeita
             </DialogDescription>
@@ -62,7 +67,6 @@ export function Remove({ bookIdRemove }) {
     </Dialog.Root>
   );
 }
-
 
 Remove.propTypes = {
   bookIdRemove: PropTypes.number.isRequired,

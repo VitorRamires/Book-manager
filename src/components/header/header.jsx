@@ -4,15 +4,30 @@ import { useState } from "react";
 import logo from "../../img/logo.png";
 import arrow from "../../img/arrow.svg";
 
+/**
+ * A header to display in books and authors page
+ *
+ * @returns {JSX.Element}
+ */
 export function Header() {
   const [menuOpenened, setMenuOpened] = useState(false);
   const [resized, setResized] = useState(null);
   const mobileSizeChanger = 885;
 
+  /**
+   *  Function for control the menu state
+   *
+   * @return {void}
+   */
   function toggleMenu() {
     setMenuOpened(!menuOpenened);
   }
 
+  /**
+   * Function to verify the size screen
+   *
+   * @return {void}
+   */
   function verifySizeScreen() {
     let widthWindow = window.innerWidth;
     if (mobileSizeChanger <= widthWindow) {

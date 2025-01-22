@@ -10,20 +10,31 @@ import {
   DialogTrigger,
   Span,
   DialogDescription,
-  BookList
+  BookList,
 } from "../../styles/remove";
 import removeLogo from "../../../img/trash.svg";
 
+/**
+ * Component to remove a book
+ *
+ * @param {number} props.authorUniqueId - ID of author for remove
+ * @param {func}  props.setSpecificAuthorId - method for save the author ID inside state
+ * @returns {JSX.Element}
+ */
 export function Remove({ authorUniqueId, setSpecificAuthorId }) {
-  const { setBooks, books } = useContext(CreateGlobalContext);
-  const { setAuthors } = useContext(CreateGlobalAuthors);
-
   const [authorHasBooks, setAuthorHasBooks] = useState(false);
   const [filterAuthorBooks, setFilterAuthorBooks] = useState([]);
 
+  const { setBooks, books } = useContext(CreateGlobalContext);
+  const { setAuthors } = useContext(CreateGlobalAuthors);
+
   const arraySavedOnLocal = JSON.parse(localStorage.getItem("authors"));
 
-  //Pegando o ID unico do author
+  /**
+   * Function to remove author and books related to the author
+   *
+   * @return {void}
+   */
   function getAuthorUniqueId() {
     setSpecificAuthorId(authorUniqueId);
 
@@ -33,16 +44,19 @@ export function Remove({ authorUniqueId, setSpecificAuthorId }) {
 
     let removeBooks = books.filter((book) => book.authorId != authorUniqueId);
 
-    // Remover Livros
     setBooks(removeBooks);
     localStorage.setItem("books", JSON.stringify(removeBooks));
 
-    // Remover Autor
     setAuthors(removeAuthor);
     localStorage.setItem("authors", JSON.stringify(removeAuthor));
   }
 
-  //Mostrar Livros do Autor
+
+  /**
+   * Function to display all books related to the author
+   *
+   * @return {void}
+   */
   function verifyAuthor() {
     const filteredBooks = books.filter(
       (book) => book.authorId == authorUniqueId
@@ -69,7 +83,9 @@ export function Remove({ authorUniqueId, setSpecificAuthorId }) {
             </Dialog.Title>
             {authorHasBooks ? (
               <>
-              <DialogDescription>Removendo o autor, também removerá estes livros:</DialogDescription>
+                <DialogDescription>
+                  Removendo o autor, também removerá estes livros:
+                </DialogDescription>
                 <BookList>
                   {filterAuthorBooks.map((book) => (
                     <li key={book.id}>{book.name}</li>

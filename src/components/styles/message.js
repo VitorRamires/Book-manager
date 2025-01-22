@@ -4,6 +4,7 @@ export const MessageStyle = styled.div`
   text-align: center;
   font-family: "Montserrat", Sans-serif;
   font-size: 1.6rem;
+  margin-top:40px;
 
   img {
     width: 150px;

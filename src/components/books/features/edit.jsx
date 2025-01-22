@@ -13,7 +13,12 @@ import {
 } from "../../styles/edit";
 import editLogo from "../../../img/edit.svg";
 
-
+/**
+ * Component to edit a book
+ *
+ * @param {number} props.bookId- ID of book for edit
+ * @returns {JSX.Element}
+ */
 export function Edit({ bookId }) {
   const [getId, setGetId] = useState(bookId);
   const [formValue, setFormValues] = useState({});
@@ -21,20 +26,36 @@ export function Edit({ bookId }) {
   const { authors } = useContext(CreateGlobalAuthors);
   const { setBooks, books } = useContext(CreateGlobalContext);
 
-  const captureOnLocalStorage = JSON.parse(localStorage.getItem("books"));
-  let selectedBook = captureOnLocalStorage.filter(
-    (item) => item.id === getId
-  )[0];
+  let selectedBook = books.filter((item) => item.id === getId)[0];
 
+  /**
+   * Function to get and save the book ID on state
+   *
+   * @return {void}
+   */
   function getIdHandle() {
     setGetId(bookId);
   }
 
+  /**
+   * Function to uptade the values of a existed book when value changes
+   *
+   * @param {Object} target - target of a input
+   * @param {string} id - ID of input
+   * @param {string} value - value of input
+   * @return {void}
+   */
   function handleInputChange({ target }) {
     const { id, value } = target;
     setFormValues({ ...formValue, [id]: value });
   }
 
+  /**
+   * Function to submiting the changes of a book
+   *
+   * @param {Event} event - Submit event of form
+   * @return {void}
+   */
   function handleSubmitEdit(event) {
     event.preventDefault();
     const saveEditBooks = books.map((item) => {

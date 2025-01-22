@@ -15,7 +15,13 @@ import {
 import { Center } from "../../global.js";
 import img from "../../img/book.svg";
 
-export function Livros() {
+
+/**
+ * Component for render and manage the book list 
+ * 
+ * @return {JSX.Element}
+ */
+export function Books() {
   const { books, handleSubmit, register, createBookHandle } =
     useContext(CreateGlobalContext);
   const { authors } = useContext(CreateGlobalAuthors);
@@ -87,6 +93,7 @@ export function Livros() {
         img={img}
         tableHead={["Id", "Livro", "Autor", "Páginas", "Ações"]}
         SectionComponent={Book}
+        message={"Livro"}
       />
     </Center>
   );

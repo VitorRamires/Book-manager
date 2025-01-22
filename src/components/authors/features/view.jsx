@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 
 import * as Dialog from "@radix-ui/react-dialog";
@@ -12,19 +12,27 @@ import {
   ViewInfoDinamic,
 } from "../../styles/preview";
 import previewLogo from "../../../img/preview.svg";
+import { CreateGlobalAuthors } from "../../../context/globalContextAuthors";
 
-
+/**
+ * Component to display preview informations of a author
+ *
+ * @param {number} props.authorIdPreview - ID of author for preview
+ * @returns {JSX.Element}
+ */
 export function Preview({ authorIdPreview }) {
   const [getIdPreview, setGetIdPreview] = useState(authorIdPreview);
 
+  const { authors } = useContext(CreateGlobalAuthors);
 
-  const captureOnLocalStorage =
-    JSON.parse(localStorage.getItem("authors")) || [];
   let filterIdAuthorPreview =
-    captureOnLocalStorage.filter((item) => item.authorId === getIdPreview)[0] ||
-    {};
+    authors.filter((item) => item.authorId === getIdPreview)[0] || {};
 
-
+  /**
+   * Function to capture and save the author id in state
+   *
+   * @return {void}
+   */
   function getIdAuthorPreviewHandle() {
     setGetIdPreview(authorIdPreview);
   }

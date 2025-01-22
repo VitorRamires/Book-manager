@@ -15,6 +15,11 @@ import {
 import * as Dialog from "@radix-ui/react-dialog";
 import img from "../../img/Author.svg";
 
+/**
+ * Component for render and manage the author list 
+ * 
+ * @return {JSX.Element}
+ */
 export function Authors() {
   const {
     authors,
@@ -78,6 +83,7 @@ export function Authors() {
         img={img}
         tableHead={["Id", "Livro", "Autor", "Ações"]}
         SectionComponent={Author}
+        message={"Autor"}
       />
     </Center>
   );

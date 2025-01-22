@@ -8,12 +8,31 @@ import {
 } from "../components/styles/tables.js";
 import lupa from "../img/lupa.svg";
 
-export function Table({ infoSection, img, tableHead, SectionComponent }) {
+/**
+ * Component for display the table of books and authors list
+ *
+ * @param {Array<Object>} props.infoSection - object of information of book and author
+ * @param {string} props.img - url of image displayed on message component
+ * @param {Array<string>} props.tableHead - Array of table heads of book and author list
+ * @param {React.ElementType} props.SectioComponent - Component to render each row of the table.
+ * @param {string} props.message - Message to display when no data is available.
+ * @returns {JSX.Element}
+ */
+export function Table({
+  infoSection,
+  img,
+  tableHead,
+  SectionComponent,
+  message,
+}) {
   const [inputText, setInputText] = useState("");
 
   const infoFiltered = infoSection.filter((info) =>
     Object.values(info).some((objectValue) => {
-      return objectValue.toString().toLowerCase().includes(inputText.toLowerCase());
+      return objectValue
+        .toString()
+        .toLowerCase()
+        .includes(inputText.toLowerCase());
     })
   );
 
@@ -51,7 +70,7 @@ export function Table({ infoSection, img, tableHead, SectionComponent }) {
           </TableBox>
         ) : (
           <>
-            <Message image={img} section="Livro" />
+            <Message image={img} section={message} />
           </>
         )}
       </TableWrapper>
@@ -64,4 +83,5 @@ Table.propTypes = {
   img: PropTypes.string.isRequired,
   tableHead: PropTypes.array.isRequired,
   SectionComponent: PropTypes.elementType.isRequired,
+  message: PropTypes.string.isRequired,
 };

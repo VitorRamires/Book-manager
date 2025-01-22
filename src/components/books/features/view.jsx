@@ -13,18 +13,29 @@ import {
   ViewInfo,
 } from "../../styles/preview";
 import previewLogo from "../../../img/preview.svg";
+import { CreateGlobalContext } from "../../../context/globalContextBooks";
 
 
+/**
+ * Component to display preview informations of a book
+ * 
+ * @param {number} props.bookIdPreview - ID of book for preview
+ * @returns {JSX.Element}
+ */
 export function Preview({ bookIdPreview }) {
-  const { authors } = useContext(CreateGlobalAuthors);
-
   const [getIdPreview, setGetIdPreview] = useState(bookIdPreview);
 
-  const captureOnLocalStorage = JSON.parse(localStorage.getItem("books"));
-  let filterIdPreview = captureOnLocalStorage.filter(
-    (item) => item.id === getIdPreview
-  )[0] || [];
+  const { authors } = useContext(CreateGlobalAuthors);
+  const { books } = useContext(CreateGlobalContext);
 
+  let filterIdPreview =
+    books.filter((item) => item.id === getIdPreview)[0] || [];
+
+  /**
+   * Function to capture and save the book id in state
+   * 
+   * @return {void}
+   */
   function getIdPreviewHandle() {
     setGetIdPreview(bookIdPreview);
   }
@@ -39,7 +50,7 @@ export function Preview({ bookIdPreview }) {
           onClick={getIdPreviewHandle}
         />
       </DialogTrigger>
-      
+
       <Dialog.Portal>
         <DialogOverlay>
           <ModalBox>
@@ -79,8 +90,6 @@ export function Preview({ bookIdPreview }) {
           </ModalBox>
         </DialogOverlay>
       </Dialog.Portal>
-
-
     </Dialog.Root>
   );
 }

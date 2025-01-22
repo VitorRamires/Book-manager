@@ -198,7 +198,7 @@ export const InputFilter = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 15px;
-  background-color: rgb(233, 233, 233);
+  background-color: #ffffff;
   padding: 0 15px;
   border-radius: 8px;
   border: 1px solid transparent;
