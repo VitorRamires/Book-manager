@@ -5,6 +5,7 @@ import {
   TableBox,
   TableWrapper,
   InputFilter,
+  ButtonsFilterWrapper,
 } from "../components/styles/tables.js";
 import lupa from "../img/lupa.svg";
 
@@ -25,12 +26,19 @@ export function Table({
   SectionComponent,
   message,
   name,
-  id
+  id,
 }) {
   const [inputText, setInputText] = useState("");
   const [filterOption, setFilterOption] = useState("all");
+  const [buttonActive, setButtonActive] = useState("all");
 
-  const handleFilter = infoSection.filter((info) => {
+  function handleFilter(filterOption) {
+    localStorage.setItem("filterOption", filterOption);
+    setFilterOption(filterOption);
+    setButtonActive(filterOption);
+  }
+
+  const filtredContent = infoSection.filter((info) => {
     if (filterOption === "all") {
       return Object.keys(info)
         .filter((key) => key !== "date")
@@ -62,16 +70,30 @@ export function Table({
         />
         <img src={lupa} alt="" />
       </InputFilter>
-      <button onClick={() => setFilterOption(name)}>
-        Filtrar por nome: {message}
-      </button>
-      <button onClick={() => setFilterOption(id)}>
-        Filtrar por ID: {message}
-      </button>
-      <button onClick={() => setFilterOption("all")}>Resetar Filtro</button>
+
+      <ButtonsFilterWrapper>
+        <button
+          className={buttonActive === name ? "activated-button" : ""}
+          onClick={() => handleFilter(name)}
+        >
+          Filtrar por nome: {message}
+        </button>
+        <button
+          className={buttonActive === id ? "activated-button" : ""}
+          onClick={() => handleFilter(id)}
+        >
+          Filtrar por ID: {message}
+        </button>
+        <button
+          className={buttonActive === "all" ? "activated-button" : ""}
+          onClick={() => handleFilter("all")}
+        >
+          Sem filtros
+        </button>
+      </ButtonsFilterWrapper>
 
       <TableWrapper>
-        {handleFilter.length !== 0 ? (
+        {filtredContent.length !== 0 ? (
           <TableBox>
             <thead>
               <tr>
@@ -82,7 +104,7 @@ export function Table({
             </thead>
 
             <tbody>
-              {handleFilter.map((info, index) => {
+              {filtredContent.map((info, index) => {
                 return <SectionComponent key={index} componentInfo={info} />;
               })}
             </tbody>

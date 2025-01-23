@@ -237,9 +237,16 @@ export const ButtonsFilterWrapper = styled.div`
     padding:10px 15px;
     margin:5px 0 25px 0;
     font-family: "Montserrat";
-    background-color:rgb(18, 103, 146);
+    background-color:rgb(161, 161, 161);
     color: #ffffff;
     cursor: pointer;
+    transition: 0.2s;
+
+    &.activated-button{
+      background-color: rgb(18, 103, 146);
+    }
   }
+
+  
 `;
 
