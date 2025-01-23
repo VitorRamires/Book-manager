@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import { Message } from "../components/messages/messages.jsx";
 import {
@@ -26,22 +26,18 @@ export function Table({
   message,
 }) {
   const [inputText, setInputText] = useState("");
-  const [infoFiltered, setInfoFiltered] = useState([]);
 
-
-  useEffect(() => {
-    const handleFilter = infoSection.filter((info) =>
-      Object.values(info).some((objectValue) => {
-        return objectValue
+  const handleFilter = infoSection.filter((info) => {
+    return Object.keys(info)
+      .filter((key) => key !== "date")
+      .some((key) => {
+        return info[key]
           .toString()
           .toLowerCase()
           .includes(inputText.toLowerCase());
-      })
-    );
-    setInfoFiltered(handleFilter);
-  }, [inputText, infoSection]);
-
-
+      });
+  });
+  
   return (
     <>
       <InputFilter className="filter-info">
@@ -58,7 +54,7 @@ export function Table({
       </InputFilter>
 
       <TableWrapper>
-        {infoFiltered.length !== 0 ? (
+        {handleFilter.length !== 0 ? (
           <TableBox>
             <thead>
               <tr>
@@ -69,7 +65,7 @@ export function Table({
             </thead>
 
             <tbody>
-              {infoFiltered.map((info, index) => {
+              {handleFilter.map((info, index) => {
                 return <SectionComponent key={index} componentInfo={info} />;
               })}
             </tbody>
@@ -90,7 +86,4 @@ Table.propTypes = {
   tableHead: PropTypes.array.isRequired,
   SectionComponent: PropTypes.elementType.isRequired,
   message: PropTypes.string.isRequired,
-  filterName: PropTypes.string.isRequired,
-  filterAuthorId: PropTypes.string.isRequired,
-  filterBookId: PropTypes.string,
 };
