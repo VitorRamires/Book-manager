@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CreateGlobalAuthors } from "../../context/globalContextAuthors.jsx";
 import { Author } from "./author.jsx";
 import { Center } from "../../global.js";
-import { Table } from "../table.jsx";
+import { Table } from "../Table.jsx";
 
 import {
   DialogOverlay,
@@ -79,7 +79,7 @@ export function Authors() {
       <Table
         infoSection={authors}
         img={img}
-        tableHead={["Id", "Autor", "Email", "Ações"]}
+        tableHead={["Id", "Autor", "email", "Ações"]}
         SectionComponent={Author}
         message={"Autor"}
       />

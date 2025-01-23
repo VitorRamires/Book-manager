@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Message } from "./messages/messages.jsx";
-import { TableBox, TableWrapper } from "./styles/tables.js";
-import { Filters } from "./filters.jsx";
+import { Message } from "../components/messages/messages.jsx";
+import {
+  TableBox,
+  TableWrapper,
+  InputFilter,
+} from "../components/styles/tables.js";
+import lupa from "../img/lupa.svg";
 
 /**
  * Component for display the table of books and authors list
@@ -21,11 +25,37 @@ export function Table({
   SectionComponent,
   message,
 }) {
+  const [inputText, setInputText] = useState("");
   const [infoFiltered, setInfoFiltered] = useState([]);
+
+
+  useEffect(() => {
+    const handleFilter = infoSection.filter((info) =>
+      Object.values(info).some((objectValue) => {
+        return objectValue
+          .toString()
+          .toLowerCase()
+          .includes(inputText.toLowerCase());
+      })
+    );
+    setInfoFiltered(handleFilter);
+  }, [inputText, infoSection]);
+
 
   return (
     <>
-      <Filters setInfoFiltered={setInfoFiltered} infoSection={infoSection} />
+      <InputFilter className="filter-info">
+        <input
+          type="text"
+          className="input-filter"
+          value={inputText}
+          onChange={({ target }) => {
+            setInputText(target.value);
+          }}
+          placeholder="Pesquise por qualquer informação aqui"
+        />
+        <img src={lupa} alt="" />
+      </InputFilter>
 
       <TableWrapper>
         {infoFiltered.length !== 0 ? (
@@ -61,5 +91,6 @@ Table.propTypes = {
   SectionComponent: PropTypes.elementType.isRequired,
   message: PropTypes.string.isRequired,
   filterName: PropTypes.string.isRequired,
-  filterPages: PropTypes.string,
+  filterAuthorId: PropTypes.string.isRequired,
+  filterBookId: PropTypes.string,
 };

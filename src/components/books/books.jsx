@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { CreateGlobalContext } from "../../context/globalContextBooks.jsx";
 import { CreateGlobalAuthors } from "../../context/globalContextAuthors.jsx";
-import { Table } from "../table.jsx";
+import { Table } from "../Table.jsx";
 import { Book } from "./book.jsx";
 
 import * as Dialog from "@radix-ui/react-dialog";
