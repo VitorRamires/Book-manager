@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 export const CreateGlobalContext = createContext();
 
 /**
- * Provider component Books
+ * Provider component books
  *
  * @param {Object} props
  * @param {React.ReactNode}
@@ -19,7 +19,7 @@ export function ContextGlobal({ children }) {
   const [books, setBooks] = useState([]);
   const [ids, setIds] = useState(0);
 
-  const { handleSubmit, register, reset } = useForm();
+  const formMethods = useForm();
 
   useEffect(() => {
     const getBooks = JSON.parse(localStorage.getItem("books")) || [];
@@ -36,7 +36,7 @@ export function ContextGlobal({ children }) {
    *
    * Handles the creation of a new book
    *
-   * @param {Object} data - form data for new book
+   * @param {Object} data - form data
    * @param {string} data.bookName - name of the book 
    * @param {number} data.pages - number of pages
    * @param {number} data.id - ID of book
@@ -56,12 +56,12 @@ export function ContextGlobal({ children }) {
 
     setBooks((state) => [...state, newBook]);
     localStorage.setItem("books", JSON.stringify([...books, newBook]));
-    reset();
+    formMethods.reset();
   }
 
   return (
     <CreateGlobalContext.Provider
-      value={{ books, setBooks, createBookHandle, ids, handleSubmit, register }}
+      value={{ books, setBooks, createBookHandle, ids, formMethods }}
     >
       {children}
     </CreateGlobalContext.Provider>

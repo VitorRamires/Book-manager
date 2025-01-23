@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { CreateGlobalContext } from "../../context/globalContextBooks.jsx";
 import { CreateGlobalAuthors } from "../../context/globalContextAuthors.jsx";
-import { Table } from "../Table.jsx";
+import { Table } from "../table.jsx";
 import { Book } from "./book.jsx";
 
 import * as Dialog from "@radix-ui/react-dialog";
@@ -15,16 +15,18 @@ import {
 import { Center } from "../../global.js";
 import img from "../../img/book.svg";
 
-
 /**
- * Component for render and manage the book list 
- * 
+ * Component for render and manage the book list
+ *
  * @return {JSX.Element}
  */
 export function Books() {
-  const { books, handleSubmit, register, createBookHandle } =
+  const { books, formMethods, createBookHandle } =
     useContext(CreateGlobalContext);
+
   const { authors } = useContext(CreateGlobalAuthors);
+
+  const { handleSubmit, register } = formMethods;
 
   return (
     <Center>
@@ -82,8 +84,6 @@ export function Books() {
                 </Dialog.Close>
               </ModalActions>
             </form>
-
-            
           </ModalBox>
         </DialogOverlay>
       </Dialog.Root>

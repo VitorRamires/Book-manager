@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CreateGlobalAuthors } from "../../context/globalContextAuthors.jsx";
 import { Author } from "./author.jsx";
 import { Center } from "../../global.js";
-import { Table } from "../Table.jsx";
+import { Table } from "../table.jsx";
 
 import {
   DialogOverlay,
@@ -16,8 +16,8 @@ import * as Dialog from "@radix-ui/react-dialog";
 import img from "../../img/Author.svg";
 
 /**
- * Component for render and manage the author list 
- * 
+ * Component for render and manage the author list
+ *
  * @return {JSX.Element}
  */
 export function Authors() {
@@ -72,8 +72,6 @@ export function Authors() {
               </ModalActions>
               <AlreadyCreated>{authorNotExistMessage}</AlreadyCreated>
             </form>
-
-            
           </ModalBox>
         </DialogOverlay>
       </Dialog.Root>
@@ -81,7 +79,7 @@ export function Authors() {
       <Table
         infoSection={authors}
         img={img}
-        tableHead={["Id", "Livro", "Autor", "Ações"]}
+        tableHead={["Id", "Autor", "Email", "Ações"]}
         SectionComponent={Author}
         message={"Autor"}
       />

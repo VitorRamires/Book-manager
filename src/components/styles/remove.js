@@ -27,7 +27,7 @@ export const ModalBox = styled(Dialog.Content)`
 `;
 
 export const DialogDescription = styled(Dialog.Description)`
-  margin-top: 10px;
+  margin-bottom: 5px;
 `;
 
 export const DialogTrigger = styled(Dialog.Trigger)`
@@ -46,7 +46,7 @@ export const ModalActions = styled.div`
     width: 100px;
     padding: 10px 5px;
     cursor: pointer;
-    background-color:rgb(235, 235, 235);
+    background-color: rgb(235, 235, 235);
     outline: none;
     border: none;
     border-radius: 5px;
@@ -82,7 +82,9 @@ export const Span = styled.span`
   color: #263072;
 
   &.alert {
+    display: block;
     color: red;
+    margin-bottom: 10px;
   }
 `;
 

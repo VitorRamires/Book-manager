@@ -225,3 +225,21 @@ export const InputFilter = styled.div`
     transition: 0.2s;
   }
 `;
+
+export const ButtonsFilterWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 15px;
+
+  button{
+    width: max-content;
+    padding:10px 15px;
+    margin:5px 0 25px 0;
+    font-family: "Montserrat";
+    background-color:rgb(18, 103, 146);
+    color: #ffffff;
+    cursor: pointer;
+  }
+`;
+
