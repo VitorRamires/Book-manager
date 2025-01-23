@@ -24,20 +24,30 @@ export function Table({
   tableHead,
   SectionComponent,
   message,
+  name,
+  id
 }) {
   const [inputText, setInputText] = useState("");
+  const [filterOption, setFilterOption] = useState("all");
 
   const handleFilter = infoSection.filter((info) => {
-    return Object.keys(info)
-      .filter((key) => key !== "date")
-      .some((key) => {
-        return info[key]
-          .toString()
-          .toLowerCase()
-          .includes(inputText.toLowerCase());
-      });
+    if (filterOption === "all") {
+      return Object.keys(info)
+        .filter((key) => key !== "date")
+        .some((key) => {
+          return info[key]
+            .toString()
+            .toLowerCase()
+            .includes(inputText.toLowerCase());
+        });
+    } else {
+      return info[filterOption]
+        .toString()
+        .toLowerCase()
+        .includes(inputText.toLowerCase());
+    }
   });
-  
+
   return (
     <>
       <InputFilter className="filter-info">
@@ -52,6 +62,13 @@ export function Table({
         />
         <img src={lupa} alt="" />
       </InputFilter>
+      <button onClick={() => setFilterOption(name)}>
+        Filtrar por nome: {message}
+      </button>
+      <button onClick={() => setFilterOption(id)}>
+        Filtrar por ID: {message}
+      </button>
+      <button onClick={() => setFilterOption("all")}>Resetar Filtro</button>
 
       <TableWrapper>
         {handleFilter.length !== 0 ? (
@@ -86,4 +103,6 @@ Table.propTypes = {
   tableHead: PropTypes.array.isRequired,
   SectionComponent: PropTypes.elementType.isRequired,
   message: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };

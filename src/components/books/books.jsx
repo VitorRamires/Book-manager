@@ -94,6 +94,8 @@ export function Books() {
         tableHead={["Id", "Livro", "Autor", "Páginas", "Ações"]}
         SectionComponent={Book}
         message={"Livro"}
+        name={"name"}
+        id={"id"}
       />
     </Center>
   );

@@ -82,6 +82,8 @@ export function Authors() {
         tableHead={["Id", "Autor", "email", "Ações"]}
         SectionComponent={Author}
         message={"Autor"}
+        name={"author"}
+        id={"authorId"}
       />
     </Center>
   );

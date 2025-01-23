@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
-import { createContext, useEffect, useState, useContext } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { CreateGlobalAuthors } from "./globalContextAuthors";
 
 /**
  * Context managing global books state
@@ -16,7 +15,6 @@ export const CreateGlobalContext = createContext();
  * @returns {JSX.Element}
  */
 export function ContextGlobal({ children }) {
-  const { authors } = useContext(CreateGlobalAuthors);
   const [books, setBooks] = useState([]);
   const [ids, setIds] = useState(0);
 
@@ -46,14 +44,12 @@ export function ContextGlobal({ children }) {
    */
   function createBookHandle(data) {
     setIds(ids + 1);
-    const authorBook = authors.find((author) => author.authorId == data.author);
 
     const newBook = {
       name: data.bookName,
       pages: data.pages,
       id: ids,
       authorId: data.author,
-      author: authorBook.author,
       date: new Date().toLocaleDateString("pt-BR"),
     };
 
