@@ -13,66 +13,44 @@ import {
 } from "../../styles/edit";
 import editLogo from "../../../img/edit.svg";
 
-/**
- * Component to edit a book
- *
- * @param {number} props.bookId- ID of book for edit
- * @returns {JSX.Element}
- */
+
 export function Edit({ bookId }) {
   const [getId, setGetId] = useState(bookId);
   const [formValue, setFormValues] = useState({});
+
 
   const { authors } = useContext(CreateGlobalAuthors);
   const { setBooks, books } = useContext(CreateGlobalContext);
 
   let selectedBook = books.filter((item) => item.id === getId)[0];
 
-  /**
-   * Function to get and save the book ID on state
-   *
-   * @return {void}
-   */
-  function getIdHandle() {
-    setGetId(bookId);
-  }
-
-  /**
-   * Function to uptade the values of a existed book when value changes
-   *
-   * @param {Object} target - target of a input
-   * @param {string} id - ID of input
-   * @param {string} value - value of input
-   * @return {void}
-   */
-  function handleInputChange({ target }) {
-    const { id, value } = target;
-    setFormValues({ ...formValue, [id]: value });
-  }
-
-  /**
-   * Function to submiting the changes of a book
-   *
-   * @param {Event} event - Submit event of form
-   * @return {void}
-   */
-  function handleSubmitEdit(event) {
-    event.preventDefault();
-    const saveEditBooks = books.map((item) => {
-      if (item.id === selectedBook.id) {
-        return { ...item, ...formValue };
-      }
-      return item;
-    });
-    setBooks(saveEditBooks);
-    localStorage.setItem("books", JSON.stringify(saveEditBooks));
-  }
-
   useEffect(() => {
     if (selectedBook) {
       setFormValues(selectedBook);
     }
   }, []);
+
+  function getIdHandle() {
+    setGetId(bookId);
+  }
+
+  function handleInputChange({ target }) {
+    const { id, value } = target;
+    setFormValues({ ...formValue, [id]: value });
+  }
+
+  function handleSubmitEdit(event) {
+    event.preventDefault();
+    const saveEditBooks = books.map((book) => {
+      if (book.id === selectedBook.id) {
+        return { ...book, ...formValue };
+      }
+      console.log(getId);
+      return book;
+    });
+    setBooks(saveEditBooks);
+    localStorage.setItem("books", JSON.stringify(saveEditBooks));
+  }
 
   return (
     <>
@@ -109,7 +87,7 @@ export function Edit({ bookId }) {
                     name="author"
                     id="authorId"
                     onChange={handleInputChange}
-                    defaultValue={"selecione o autor"}
+                    value={formValue.authorId || ""}
                   >
                     {authors.map((author) => {
                       return (

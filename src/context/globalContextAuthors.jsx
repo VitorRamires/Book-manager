@@ -1,26 +1,16 @@
 /* eslint-disable react/prop-types */
-import { createContext, useEffect, useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 
-/**
- * Context managing global author state
- */
-export const CreateGlobalAuthors = createContext();
 
-/**
- * Provider component Authors
- *
- * @param {Object} props
- * @param {React.ReactNode}
- * @returns {JSX.Element}
- */
+export const CreateGlobalAuthors = React.createContext({});
 export function ContextAuthors({ children }) {
-  const [authors, setAuthors] = useState([]);
-  const [authorsId, setAuthorsId] = useState(0);
-  const [authorNotExistMessage, setAuthorNotExistMessage] = useState("");
+  const [authors, setAuthors] =  React.useState([]);
+  const [authorsId, setAuthorsId] =  React.useState(0);
+  const [authorNotExistMessage, setAuthorNotExistMessage] =  React.useState("");
   const formMethods = useForm();
 
-  useEffect(() => {
+  React.useEffect(() => {
     const getAuthors = JSON.parse(localStorage.getItem("authors")) || [];
     setAuthors(getAuthors);
     if (getAuthors.length !== 0) {
@@ -29,19 +19,9 @@ export function ContextAuthors({ children }) {
     }
   }, []);
 
-  /**
-   * 
-   * Handle the creation of new author
-   * 
-   * @param {Object} data - form data for new author
-   * @param {string} data.author - name of author
-   * @param {string} data.email - email of the author
-   * @param {number} data.authorId - ID of author
-   * @param {string} data.date - date the author was created
-   */
   function createAuthorHandle(data) {
     const newAuthor = {
-      author: data.authorName,
+      author: data.author,
       email: data.email,
       authorId: authorsId,
       date: new Date().toLocaleDateString("pt-BR"),

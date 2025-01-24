@@ -8,13 +8,7 @@ import { Remove } from "./features/remove.jsx";
 import { Actions } from "../styles/tables.js";
 import PropTypes from "prop-types";
 
-/**
- * Component to render a unique book 
- * 
- * @param {Object} props.componentInfo - Object with book informations
- * @returns {JSX.Element}
- */
-export  function Book({ componentInfo }) {
+export function Book({ componentInfo }) {
   const { authors } = useContext(CreateGlobalAuthors);
 
   return (
@@ -26,7 +20,12 @@ export  function Book({ componentInfo }) {
         <p>{componentInfo.name}</p>
       </td>
       <td>
-        <p>{ authors.find((author) => author.authorId == componentInfo.authorId)?.author}</p>
+        <p>
+          {
+            authors.find((author) => author.authorId == componentInfo.authorId)
+              ?.author
+          }
+        </p>
       </td>
       <td>
         <p>{componentInfo.pages}</p>

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React from "react";
 import { CreateGlobalContext } from "../../context/globalContextBooks.jsx";
 import { CreateGlobalAuthors } from "../../context/globalContextAuthors.jsx";
 import { Table } from "../Table.jsx";
@@ -15,16 +15,11 @@ import {
 import { Center } from "../../global.js";
 import img from "../../img/book.svg";
 
-/**
- * Component for render and manage the book list
- *
- * @return {JSX.Element}
- */
 export function Books() {
   const { books, formMethods, createBookHandle } =
-    useContext(CreateGlobalContext);
+    React.useContext(CreateGlobalContext);
 
-  const { authors } = useContext(CreateGlobalAuthors);
+  const { authors } = React.useContext(CreateGlobalAuthors);
 
   const { handleSubmit, register } = formMethods;
 
@@ -66,15 +61,21 @@ export function Books() {
                   name="authors"
                   id="authors"
                   {...register("author", { required: true })}
-                  defaultValue={"selecione o autor"}
+                  defaultValue="Selecione o autor"
                 >
-                  {authors.map((author) => {
-                    return (
-                      <option key={author.authorId} value={author.authorId}>
-                        {author.author}
-                      </option>
-                    );
-                  })}
+                  {authors.length != 0 ? (
+                    authors.map((author) => {
+                      return (
+                        <option key={author.authorId} value={author.authorId}>
+                          {author.author}
+                        </option>
+                      );
+                    })
+                  ) : (
+                    <option value="Selecione seu autor">
+                      Selecione seu autor
+                    </option>
+                  )}
                 </select>
               </ItemModal>
               <ModalActions>

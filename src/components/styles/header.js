@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const NavHeader = styled.nav`
-  position: relative;
+  position: sticky;
+  top: 0;
   width: 100%;
   background: #1e4175;
   font-size: 1.5rem;
@@ -11,8 +12,6 @@ export const NavHeader = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-
 
   @media screen and (max-width: 885px) {
     height: 525px;

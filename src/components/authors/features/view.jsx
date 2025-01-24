@@ -14,12 +14,6 @@ import {
 import previewLogo from "../../../img/preview.svg";
 import { CreateGlobalAuthors } from "../../../context/globalContextAuthors";
 
-/**
- * Component to display preview informations of a author
- *
- * @param {number} props.authorIdPreview - ID of author for preview
- * @returns {JSX.Element}
- */
 export function Preview({ authorIdPreview }) {
   const [getIdPreview, setGetIdPreview] = useState(authorIdPreview);
 

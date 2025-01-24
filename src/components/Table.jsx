@@ -1,24 +1,9 @@
-import { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Message } from "../components/messages/messages.jsx";
-import {
-  TableBox,
-  TableWrapper,
-  InputFilter,
-  ButtonsFilterWrapper,
-} from "../components/styles/tables.js";
-import lupa from "../img/lupa.svg";
+import { TableBox, TableWrapper } from "../components/styles/tables.js";
+import { Filters } from "./filters.jsx";
 
-/**
- * Component for display the table of books and authors list
- *
- * @param {Array<Object>} props.infoSection - object of information of book and author
- * @param {string} props.img - url of image displayed on message component
- * @param {Array<string>} props.tableHead - Array of table heads of book and author list
- * @param {React.ElementType} props.SectioComponent - Component to render each row of the table.
- * @param {string} props.message - Message to display when no data is available.
- * @returns {JSX.Element}
- */
 export function Table({
   infoSection,
   img,
@@ -28,9 +13,9 @@ export function Table({
   name,
   id,
 }) {
-  const [inputText, setInputText] = useState("");
-  const [filterOption, setFilterOption] = useState("all");
-  const [buttonActive, setButtonActive] = useState("all");
+  const [inputText, setInputText] = React.useState("");
+  const [filterOption, setFilterOption] = React.useState("all");
+  const [buttonActive, setButtonActive] = React.useState("all");
 
   function handleFilter(filterOption) {
     localStorage.setItem("filterOption", filterOption);
@@ -58,39 +43,15 @@ export function Table({
 
   return (
     <>
-      <InputFilter className="filter-info">
-        <input
-          type="text"
-          className="input-filter"
-          value={inputText}
-          onChange={({ target }) => {
-            setInputText(target.value);
-          }}
-          placeholder="Pesquise por qualquer informação aqui"
-        />
-        <img src={lupa} alt="" />
-      </InputFilter>
-
-      <ButtonsFilterWrapper>
-        <button
-          className={buttonActive === name ? "activated-button" : ""}
-          onClick={() => handleFilter(name)}
-        >
-          Filtrar por nome: {message}
-        </button>
-        <button
-          className={buttonActive === id ? "activated-button" : ""}
-          onClick={() => handleFilter(id)}
-        >
-          Filtrar por ID: {message}
-        </button>
-        <button
-          className={buttonActive === "all" ? "activated-button" : ""}
-          onClick={() => handleFilter("all")}
-        >
-          Sem filtros
-        </button>
-      </ButtonsFilterWrapper>
+      <Filters
+        buttonActive={buttonActive}
+        handleFilter={handleFilter}
+        setInputText={setInputText}
+        name={name}
+        id={id}
+        inputText={inputText}
+        message={message}
+      />
 
       <TableWrapper>
         {filtredContent.length !== 0 ? (

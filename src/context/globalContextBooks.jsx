@@ -1,26 +1,16 @@
 /* eslint-disable react/prop-types */
-import { createContext, useEffect, useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 
-/**
- * Context managing global books state
- */
-export const CreateGlobalContext = createContext();
+export const CreateGlobalContext = React.createContext({});
 
-/**
- * Provider component books
- *
- * @param {Object} props
- * @param {React.ReactNode}
- * @returns {JSX.Element}
- */
 export function ContextGlobal({ children }) {
-  const [books, setBooks] = useState([]);
-  const [ids, setIds] = useState(0);
+  const [books, setBooks] = React.useState([]);
+  const [ids, setIds] = React.useState(0);
 
   const formMethods = useForm();
 
-  useEffect(() => {
+  React.useEffect(() => {
     const getBooks = JSON.parse(localStorage.getItem("books")) || [];
     setBooks(getBooks);
 
@@ -30,20 +20,9 @@ export function ContextGlobal({ children }) {
     }
   }, []);
 
-  /**
-   *
-   * Handles the creation of a new book
-   *
-   * @param {Object} data - form data
-   * @param {string} data.bookName - name of the book
-   * @param {number} data.pages - number of pages
-   * @param {number} data.id - ID of book
-   * @param {number} data.authorId - ID of the author who has the book registered
-   * @param {string} data.author - Author of the book created
-   * @param {string} data.date - date the book was created
-   */
   function createBookHandle(data) {
     setIds(ids + 1);
+    console.log(data)
 
     const newBook = {
       name: data.bookName,

@@ -13,12 +13,6 @@ import {
 } from "../../styles/remove";
 import removeLogo from "../../../img/trash.svg";
 
-/**
- * Component to remove a book
- *
- * @param {number} props.bookIdRemove - ID of book for remove
- * @returns {JSX.Element}
- */
 export function Remove({ bookIdRemove }) {
   const [getIdAuthorRemove] = useState(bookIdRemove);
 
@@ -27,11 +21,6 @@ export function Remove({ bookIdRemove }) {
   let actualItem = books.filter((item) => item.id === getIdAuthorRemove)[0];
   let removedsArray = books.filter((item) => item.id !== actualItem.id);
 
-  /**
-   * Function to save the filtered books on state and save them on localStorage
-   *
-   * @return {void}
-   */
   function filterArray() {
     localStorage.setItem("books", JSON.stringify(removedsArray));
     setBooks(removedsArray);

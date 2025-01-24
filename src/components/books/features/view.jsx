@@ -15,13 +15,6 @@ import {
 import previewLogo from "../../../img/preview.svg";
 import { CreateGlobalContext } from "../../../context/globalContextBooks";
 
-
-/**
- * Component to display preview informations of a book
- * 
- * @param {number} props.bookIdPreview - ID of book for preview
- * @returns {JSX.Element}
- */
 export function Preview({ bookIdPreview }) {
   const [getIdPreview, setGetIdPreview] = useState(bookIdPreview);
 
@@ -31,11 +24,6 @@ export function Preview({ bookIdPreview }) {
   let filterIdPreview =
     books.filter((item) => item.id === getIdPreview)[0] || [];
 
-  /**
-   * Function to capture and save the book id in state
-   * 
-   * @return {void}
-   */
   function getIdPreviewHandle() {
     setGetIdPreview(bookIdPreview);
   }

@@ -48,11 +48,11 @@ export function Authors() {
 
             <form onSubmit={handleSubmit(createAuthorHandle)}>
               <ItemModal>
-                <label htmlFor="authorName">Autor</label>
+                <label htmlFor="author">Autor</label>
                 <input
-                  id="authorName"
+                  id="author"
                   placeholder="Digite o nome do autor"
-                  {...register("authorName", { required: true })}
+                  {...register("author", { required: true })}
                 />
               </ItemModal>
               <ItemModal>

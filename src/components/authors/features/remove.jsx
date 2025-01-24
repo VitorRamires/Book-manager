@@ -14,13 +14,6 @@ import {
 } from "../../styles/remove";
 import removeLogo from "../../../img/trash.svg";
 
-/**
- * Component to remove a book
- *
- * @param {number} props.authorUniqueId - ID of author for remove
- * @param {func}  props.setSpecificAuthorId - method for save the author ID inside state
- * @returns {JSX.Element}
- */
 export function Remove({ authorUniqueId, setSpecificAuthorId }) {
   const [authorHasBooks, setAuthorHasBooks] = useState(false);
   const [filterAuthorBooks, setFilterAuthorBooks] = useState([]);
@@ -50,7 +43,6 @@ export function Remove({ authorUniqueId, setSpecificAuthorId }) {
     setAuthors(removeAuthor);
     localStorage.setItem("authors", JSON.stringify(removeAuthor));
   }
-
 
   /**
    * Function to display all books related to the author
