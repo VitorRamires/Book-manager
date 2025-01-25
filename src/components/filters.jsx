@@ -4,6 +4,7 @@ import {
 } from "../components/styles/tables.js";
 import lupa from "../img/lupa.svg";
 import PropTypes from "prop-types";
+import { useRef } from "react";
 
 export function Filters({
   inputText,
@@ -14,8 +15,14 @@ export function Filters({
   id,
   message,
 }) {
-
   
+  const inputRef = useRef(null);
+  const handleFilterClick = (filterOption) => {
+    handleFilter(filterOption);
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
 
   return (
     <>
@@ -27,7 +34,8 @@ export function Filters({
           onChange={({ target }) => {
             setInputText(target.value);
           }}
-          placeholder="Pesquise por qualquer informação aqui"
+          placeholder="Ao selecionar um filtro digite aqui para filtrar"
+          ref={inputRef}
         />
         <img src={lupa} alt="" />
       </InputFilter>
@@ -35,19 +43,19 @@ export function Filters({
       <ButtonsFilterWrapper>
         <button
           className={buttonActive === name ? "activated-button" : ""}
-          onClick={() => handleFilter(name)}
+          onClick={() => handleFilterClick(name)}
         >
           Filtrar por nome: {message}
         </button>
         <button
           className={buttonActive === id ? "activated-button" : ""}
-          onClick={() => handleFilter(id)}
+          onClick={() => handleFilterClick(id)}
         >
           Filtrar por ID: {message}
         </button>
         <button
           className={buttonActive === "all" ? "activated-button" : ""}
-          onClick={() => handleFilter("all")}
+          onClick={() => handleFilterClick("all")}
         >
           Sem filtros
         </button>
