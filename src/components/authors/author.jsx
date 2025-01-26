@@ -7,6 +7,14 @@ import { Remove } from "./features/remove.jsx";
 import { Actions } from "../styles/tables.js";
 import PropTypes from "prop-types";
 
+
+/**
+ * Component to display a unique author
+ * 
+ * @param {Object} props - React component props
+ * @param {Object} props.componentInfo - Object with all author information
+ * @returns {JSX.Element}
+*/
 export function Author({ componentInfo }) {
   const [specificAuthorId, setSpecificAuthorId] = useState(null);
 

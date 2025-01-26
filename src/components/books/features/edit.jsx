@@ -14,6 +14,13 @@ import {
 import editLogo from "../../../img/edit.svg";
 
 
+/**
+ * Component to display the book resume infos
+ *
+ * @param {Object} props - React component props
+ * @param {number} props.bookId -Ids of books
+ * @returns {JSX.Element}
+ */
 export function Edit({ bookId }) {
   const [getId, setGetId] = useState(bookId);
   const [formValue, setFormValues] = useState({});
@@ -30,22 +37,41 @@ export function Edit({ bookId }) {
     }
   }, []);
 
+
+  /**
+   * Function catch the id of book Clicked
+   * 
+   * @return {void}
+   */
   function getIdHandle() {
     setGetId(bookId);
   }
 
+  /**
+   * Function to save changes of book in state when input change is triggered
+   * 
+   * @param {Event} event - input change event
+   * @param {EventTarget & {id:string, value:string}} event.target - targets elements of event
+   * @return {void}
+   */
   function handleInputChange({ target }) {
     const { id, value } = target;
     setFormValues({ ...formValue, [id]: value });
   }
 
+
+  /**
+   * Function to apply the uptades to book the changes when form is submitted
+   * 
+   * @param {Event} event - The form submit event
+   * @return {void}
+   */
   function handleSubmitEdit(event) {
     event.preventDefault();
     const saveEditBooks = books.map((book) => {
       if (book.id === selectedBook.id) {
         return { ...book, ...formValue };
       }
-      console.log(getId);
       return book;
     });
     setBooks(saveEditBooks);

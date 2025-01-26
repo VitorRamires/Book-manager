@@ -14,6 +14,14 @@ import {
 } from "../../styles/remove";
 import removeLogo from "../../../img/trash.svg";
 
+/**
+ * Component to remove a book
+ * 
+ * @param {Object} props - React component props
+ * @param {number} props.authorUniqueId - Ids of authors
+ * @param {Function } props.setSpecificAuthorId - method to save the author ID clicked
+ * @returns {JSX.Element}
+ */
 export function Remove({ authorUniqueId, setSpecificAuthorId }) {
   const [authorHasBooks, setAuthorHasBooks] = useState(false);
   const [filterAuthorBooks, setFilterAuthorBooks] = useState([]);
@@ -22,6 +30,7 @@ export function Remove({ authorUniqueId, setSpecificAuthorId }) {
   const { setAuthors } = useContext(CreateGlobalAuthors);
 
   const arraySavedOnLocal = JSON.parse(localStorage.getItem("authors"));
+
 
   /**
    * Function to remove author and books related to the author
@@ -44,6 +53,7 @@ export function Remove({ authorUniqueId, setSpecificAuthorId }) {
     localStorage.setItem("authors", JSON.stringify(removeAuthor));
   }
 
+
   /**
    * Function to display all books related to the author
    *
@@ -57,6 +67,7 @@ export function Remove({ authorUniqueId, setSpecificAuthorId }) {
     setAuthorHasBooks(filteredBooks.length > 0);
   }
 
+  
   useEffect(() => {
     verifyAuthor();
   }, [books]);

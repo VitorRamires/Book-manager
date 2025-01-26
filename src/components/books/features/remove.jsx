@@ -13,6 +13,14 @@ import {
 } from "../../styles/remove";
 import removeLogo from "../../../img/trash.svg";
 
+
+/**
+ * Component to remove a book
+ * 
+ * @param {Object} props - React component props
+ * @param {number} props.bookIdRemove -Ids of books
+ * @returns {JSX.Element}
+ */
 export function Remove({ bookIdRemove }) {
   const [getIdAuthorRemove] = useState(bookIdRemove);
 
@@ -21,6 +29,12 @@ export function Remove({ bookIdRemove }) {
   let actualItem = books.filter((item) => item.id === getIdAuthorRemove)[0];
   let removedsArray = books.filter((item) => item.id !== actualItem.id);
 
+  
+  /**
+   * Funtion to save a new filtered array and save on localStorage
+   * 
+   * @returns {void}
+   */
   function filterArray() {
     localStorage.setItem("books", JSON.stringify(removedsArray));
     setBooks(removedsArray);

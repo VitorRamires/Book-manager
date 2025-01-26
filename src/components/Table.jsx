@@ -4,6 +4,21 @@ import { Message } from "../components/messages/messages.jsx";
 import { TableBox, TableWrapper } from "../components/styles/tables.js";
 import { Filters } from "./filters.jsx";
 
+
+
+/**
+ * Component to display table of authors and books
+ *
+ * @param {Object} props - React component props
+ * @param {Array<Object>} props.infoSection - Array of information objects for books and authors
+ * @param {string} props.img - URL of the image displayed in the message component
+ * @param {Array<string>} props.tableHead - Array of table headers for the book and author list
+ * @param {React.ElementType} props.SectionComponent - Component to render each row of the table
+ * @param {string} props.message - Message to display when no data is available
+ * @param {string} props.name - Name of the filter
+ * @param {string} props.id - ID of the filter
+ * @returns {JSX.Element} 
+ */
 export function Table({
   infoSection,
   img,
@@ -17,8 +32,14 @@ export function Table({
   const [filterOption, setFilterOption] = React.useState("all");
   const [buttonActive, setButtonActive] = React.useState("all");
 
+
+  /**
+   * Function to manage when option filter is active and working
+   * 
+   * @param {string} filterOption 
+   * @return {void}
+   */
   function handleFilter(filterOption) {
-    localStorage.setItem("filterOption", filterOption);
     setFilterOption(filterOption);
     setButtonActive(filterOption);
   }

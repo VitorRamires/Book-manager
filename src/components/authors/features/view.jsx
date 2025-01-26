@@ -14,6 +14,14 @@ import {
 import previewLogo from "../../../img/preview.svg";
 import { CreateGlobalAuthors } from "../../../context/globalContextAuthors";
 
+
+/**
+ * Component to display the author resume infos
+ *
+ * @param {Object} props - React component props
+ * @param {number} props.authorIdPreview - Ids of authors
+ * @returns {JSX.Element}
+ */
 export function Preview({ authorIdPreview }) {
   const [getIdPreview, setGetIdPreview] = useState(authorIdPreview);
 
@@ -21,6 +29,7 @@ export function Preview({ authorIdPreview }) {
 
   let filterIdAuthorPreview =
     authors.filter((item) => item.authorId === getIdPreview)[0] || {};
+
 
   /**
    * Function to capture and save the author id in state
@@ -31,6 +40,7 @@ export function Preview({ authorIdPreview }) {
     setGetIdPreview(authorIdPreview);
   }
 
+  
   useEffect(() => {
     setGetIdPreview(authorIdPreview);
   }, [authorIdPreview]);

@@ -16,9 +16,9 @@ import * as Dialog from "@radix-ui/react-dialog";
 import img from "../../img/Author.svg";
 
 /**
- * Component for render and manage the author list
- *
- * @return {JSX.Element}
+ * Component to display a list Authors
+ * 
+ * @returns {JSX.Element}
  */
 export function Authors() {
   const {
@@ -30,6 +30,9 @@ export function Authors() {
   } = useContext(CreateGlobalAuthors);
   const { handleSubmit, register } = formMethods;
 
+  /**
+   * Function to reset the form 
+   */
   function resetForm() {
     formMethods.reset();
     setAuthorNotExistMessage("");

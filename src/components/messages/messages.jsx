@@ -2,6 +2,14 @@
 
 import { MessageStyle } from "../styles/message";
 
+/**
+ * Component to display message if not exist author or book on list
+ * 
+ * @param {Object} props - React component props
+ * @param {string} image - Empty list image URL of book or author
+ * @param {string} section - Indicate the section 
+ * @returns {JSX.Element}
+ */
 export function Message({ image, section }) {
   return (
     <MessageStyle>

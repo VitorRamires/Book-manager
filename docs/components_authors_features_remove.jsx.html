@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/authors/features/remove.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/authors/features/remove.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useState, useContext, useEffect } from "react";
+import PropTypes from "prop-types";
+import { CreateGlobalContext } from "../../../context/globalContextBooks";
+import { CreateGlobalAuthors } from "../../../context/globalContextAuthors";
+import * as Dialog from "@radix-ui/react-dialog";
+import {
+  DialogOverlay,
+  ModalBox,
+  ModalActions,
+  DialogTrigger,
+  Span,
+  DialogDescription,
+  BookList,
+} from "../../styles/remove";
+import removeLogo from "../../../img/trash.svg";
+
+/**
+ * Component to remove a book
+ * 
+ * @param {Object} props - React component props
+ * @param {number} props.authorUniqueId - Ids of authors
+ * @param {Function } props.setSpecificAuthorId - method to save the author ID clicked
+ * @returns {JSX.Element}
+ */
+export function Remove({ authorUniqueId, setSpecificAuthorId }) {
+  const [authorHasBooks, setAuthorHasBooks] = useState(false);
+  const [filterAuthorBooks, setFilterAuthorBooks] = useState([]);
+
+  const { setBooks, books } = useContext(CreateGlobalContext);
+  const { setAuthors } = useContext(CreateGlobalAuthors);
+
+  const arraySavedOnLocal = JSON.parse(localStorage.getItem("authors"));
+
+
+  /**
+   * Function to remove author and books related to the author
+   *
+   * @return {void}
+   */
+  function getAuthorUniqueId() {
+    setSpecificAuthorId(authorUniqueId);
+
+    let removeAuthor = arraySavedOnLocal.filter(
+      (author) => author.authorId != authorUniqueId
+    );
+
+    let removeBooks = books.filter((book) => book.authorId != authorUniqueId);
+
+    setBooks(removeBooks);
+    localStorage.setItem("books", JSON.stringify(removeBooks));
+
+    setAuthors(removeAuthor);
+    localStorage.setItem("authors", JSON.stringify(removeAuthor));
+  }
+
+
+  /**
+   * Function to display all books related to the author
+   *
+   * @return {void}
+   */
+  function verifyAuthor() {
+    const filteredBooks = books.filter(
+      (book) => book.authorId == authorUniqueId
+    );
+    setFilterAuthorBooks(filteredBooks);
+    setAuthorHasBooks(filteredBooks.length > 0);
+  }
+
+  
+  useEffect(() => {
+    verifyAuthor();
+  }, [books]);
+
+  return (
+    &lt;Dialog.Root>
+      &lt;DialogTrigger onClick={() => setSpecificAuthorId(authorUniqueId)}>
+        &lt;img src={removeLogo} alt="Remover" title="Remover" />
+      &lt;/DialogTrigger>
+
+      &lt;Dialog.Portal>
+        &lt;DialogOverlay>
+          &lt;ModalBox>
+            &lt;Dialog.Title>
+              &lt;Span className="alert">Deseja remover o autor?&lt;/Span>
+            &lt;/Dialog.Title>
+            {authorHasBooks ? (
+              &lt;>
+                &lt;DialogDescription>
+                  Removendo o autor, também removerá estes livros:
+                &lt;/DialogDescription>
+                &lt;BookList>
+                  {filterAuthorBooks.map((book) => (
+                    &lt;li key={book.id}>{book.name}&lt;/li>
+                  ))}
+                &lt;/BookList>
+              &lt;/>
+            ) : (
+              &lt;Span>O autor não possui livros registrados.&lt;/Span>
+            )}
+            &lt;ModalActions>
+              &lt;Dialog.Close asChild>
+                &lt;button>Não&lt;/button>
+              &lt;/Dialog.Close>
+              &lt;Dialog.Close asChild>
+                &lt;button onClick={getAuthorUniqueId}>Sim&lt;/button>
+              &lt;/Dialog.Close>
+            &lt;/ModalActions>
+          &lt;/ModalBox>
+        &lt;/DialogOverlay>
+      &lt;/Dialog.Portal>
+    &lt;/Dialog.Root>
+  );
+}
+
+Remove.propTypes = {
+  authorUniqueId: PropTypes.number.isRequired,
+  setSpecificAuthorId: PropTypes.func.isRequired,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#Author">Author</a></li><li><a href="global.html#Authors">Authors</a></li><li><a href="global.html#Book">Book</a></li><li><a href="global.html#Books">Books</a></li><li><a href="global.html#ContextAuthors">ContextAuthors</a></li><li><a href="global.html#ContextGlobal">ContextGlobal</a></li><li><a href="global.html#CreateGlobalAuthors">CreateGlobalAuthors</a></li><li><a href="global.html#CreateGlobalContext">CreateGlobalContext</a></li><li><a href="global.html#Edit">Edit</a></li><li><a href="global.html#Filters">Filters</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Message">Message</a></li><li><a href="global.html#Preview">Preview</a></li><li><a href="global.html#Remove">Remove</a></li><li><a href="global.html#Table">Table</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Jan 26 2025 10:52:37 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

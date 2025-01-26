@@ -15,18 +15,28 @@ import {
 import { Center } from "../../global.js";
 import img from "../../img/book.svg";
 
+/**
+ * Component to display a list books
+ *
+ * @returns {JSX.Element}
+ */
 export function Books() {
   const { books, formMethods, createBookHandle } =
     React.useContext(CreateGlobalContext);
-
   const { authors } = React.useContext(CreateGlobalAuthors);
-
   const { handleSubmit, register } = formMethods;
+
+  /**
+   * Function to reset the form 
+   */
+  function resetForm() {
+    formMethods.reset();
+  }
 
   return (
     <Center>
       <Dialog.Root>
-        <DialogTrigger>
+        <DialogTrigger onClick={resetForm}>
           Criar Livro <span>+</span>
         </DialogTrigger>
 

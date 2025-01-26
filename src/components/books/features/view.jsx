@@ -15,6 +15,13 @@ import {
 import previewLogo from "../../../img/preview.svg";
 import { CreateGlobalContext } from "../../../context/globalContextBooks";
 
+/**
+ * Component to display the book resume infos
+ *
+ * @param {Object} props - React component props
+ * @param {number} props.bookIdPreview -Ids of books
+ * @returns {JSX.Element}
+ */
 export function Preview({ bookIdPreview }) {
   const [getIdPreview, setGetIdPreview] = useState(bookIdPreview);
 
@@ -24,6 +31,12 @@ export function Preview({ bookIdPreview }) {
   let filterIdPreview =
     books.filter((item) => item.id === getIdPreview)[0] || [];
 
+
+  /**
+   * Funtion to save a id of book clicked
+   * 
+   * @returns {void}
+   */
   function getIdPreviewHandle() {
     setGetIdPreview(bookIdPreview);
   }
