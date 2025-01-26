@@ -23,133 +23,136 @@
 
       <section>
         <article>
-          <pre class="prettyprint source linenums"><code>/* eslint-disable react/prop-types */
-import { useState, useContext, useEffect } from "react";
-import { CreateGlobalAuthors } from "../../../context/globalContextAuthors";
-import PropTypes from "prop-types";
+          <pre class="prettyprint source linenums">
+            <code>
+              /* eslint-disable react/prop-types */
+              import { useState, useContext, useEffect } from "react";
+              import { CreateGlobalAuthors } from "../../../context/globalContextAuthors";
+              import PropTypes from "prop-types";
 
-import * as Dialog from "@radix-ui/react-dialog";
-import {
-  DialogOverlay,
-  ModalBox,
-  ItemModal,
-  ModalActions,
-  DialogTrigger,
-} from "../../styles/edit";
-import editLogo from "../../../img/edit.svg";
-
-
-
-/**
- * Component to display the book resume infos
- *
- * @param {Object} props - React component props
- * @param {number} props.authorIdEdit - Ids of authors
- * @returns {JSX.Element}
- */
-export function Edit({ authorIdEdit }) {
-  const [getId, setGetId] = useState(authorIdEdit);
-  const [formValue, setFormValues] = useState({});
-
-  const { setAuthors, authors } = useContext(CreateGlobalAuthors);
-
-  let selectedAuthor = authors.filter((item) => item.authorId === getId)[0];
-
-  /**
-   * Function catch the id of author Clicked
-   * 
-   * @return {void}
-  */
-  function getIdHandle() {
-    setGetId(authorIdEdit);
-  }
+              import * as Dialog from "@radix-ui/react-dialog";
+              import {
+                DialogOverlay,
+                ModalBox,
+                ItemModal,
+                ModalActions,
+                DialogTrigger,
+              } from "../../styles/edit";
+              import editLogo from "../../../img/edit.svg";
 
 
-  /**
-   * Function to save changes of author in state when input change is triggered
-   * 
-   * @param {Event} event - input change event
-   * @param {EventTarget &amp; {id:string, value:string}} event.target - targets elements of event
-   * @return {void}
-   */
-  function handleInputChange({ target }) {
-    const { id, value } = target;
-    setFormValues({ ...formValue, [id]: value });
-  }
+
+              /**
+              * Component to display the book resume infos
+              *
+              * @param {Object} props - React component props
+              * @param {number} props.authorIdEdit - Ids of authors
+              * @returns {JSX.Element}
+              */
+              export function Edit({ authorIdEdit }) {
+                const [getId, setGetId] = useState(authorIdEdit);
+                const [formValue, setFormValues] = useState({});
+
+                const { setAuthors, authors } = useContext(CreateGlobalAuthors);
+
+                let selectedAuthor = authors.filter((item) => item.authorId === getId)[0];
+
+                /**
+                * Function catch the id of author Clicked
+                * 
+                * @return {void}
+                */
+                function getIdHandle() {
+                  setGetId(authorIdEdit);
+                }
 
 
-  /**
-   * Function to apply the uptades to author the changes when form is submitted
-   * 
-   * @param {Event} event - The form submit event
-   * @return {void}
-   */
-  function handleSubmitEdit(event) {
-    event.preventDefault();
-    const saveEditAuthors = authors.map((item) => {
-      if (item.authorId === selectedAuthor.authorId) {
-        return { ...item, ...formValue };
-      }
-      return item;
-    });
+                /**
+                * Function to save changes of author in state when input change is triggered
+                * 
+                * @param {Event} event - input change event
+                * @param {EventTarget &amp; {id:string, value:string}} event.target - targets elements of event
+                * @return {void}
+                */
+                function handleInputChange({ target }) {
+                  const { id, value } = target;
+                  setFormValues({ ...formValue, [id]: value });
+                }
 
-    setAuthors(saveEditAuthors);
-    localStorage.setItem("authors", JSON.stringify(saveEditAuthors));
-  }
 
-  useEffect(() => {
-    if (selectedAuthor) {
-      setFormValues(selectedAuthor);
-    }
-  }, []);
+                /**
+                * Function to apply the uptades to author the changes when form is submitted
+                * 
+                * @param {Event} event - The form submit event
+                * @return {void}
+                */
+                function handleSubmitEdit(event) {
+                  event.preventDefault();
+                  const saveEditAuthors = authors.map((item) => {
+                    if (item.authorId === selectedAuthor.authorId) {
+                      return { ...item, ...formValue };
+                    }
+                    return item;
+                  });
 
-  return (
-    &lt;Dialog.Root>
-      &lt;DialogTrigger>
-        &lt;img src={editLogo} alt="" title="Editar" onClick={getIdHandle} />
-      &lt;/DialogTrigger>
+                  setAuthors(saveEditAuthors);
+                  localStorage.setItem("authors", JSON.stringify(saveEditAuthors));
+                }
 
-      &lt;Dialog.Portal>
-        &lt;DialogOverlay>
-          &lt;ModalBox>
-            &lt;Dialog.Title>Edite o autor&lt;/Dialog.Title>
-            &lt;Dialog.Description>&lt;/Dialog.Description>
-            &lt;form onSubmit={handleSubmitEdit}>
-              &lt;ItemModal>
-                &lt;label htmlFor="author">Nome do autor&lt;/label>
-                &lt;input
-                  id="author"
-                  onChange={handleInputChange}
-                  value={formValue.author || ""}
-                />
-              &lt;/ItemModal>
-              &lt;ItemModal>
-                &lt;label htmlFor="email">Email&lt;/label>
-                &lt;input
-                  id="email"
-                  type="email"
-                  onChange={handleInputChange}
-                  value={formValue.email || ""}
-                />
-              &lt;/ItemModal>
-              &lt;ModalActions>
-                &lt;button>Editar&lt;/button>
-                &lt;Dialog.Close asChild>
-                  &lt;button>Cancelar&lt;/button>
-                &lt;/Dialog.Close>
-              &lt;/ModalActions>
-            &lt;/form>
-          &lt;/ModalBox>
-        &lt;/DialogOverlay>
-      &lt;/Dialog.Portal>
-    &lt;/Dialog.Root>
-  );
-}
+                useEffect(() => {
+                  if (selectedAuthor) {
+                    setFormValues(selectedAuthor);
+                  }
+                }, []);
 
-Edit.propTypes = {
-  authorIdEdit: PropTypes.number.isRequired,
-};
-</code></pre>
+                  return (
+                    &lt;Dialog.Root>
+                      &lt;DialogTrigger>
+                        &lt;img src={editLogo} alt="" title="Editar" onClick={getIdHandle} />
+                      &lt;/DialogTrigger>
+
+                      &lt;Dialog.Portal>
+                        &lt;DialogOverlay>
+                          &lt;ModalBox>
+                            &lt;Dialog.Title>Edite o autor&lt;/Dialog.Title>
+                            &lt;Dialog.Description>&lt;/Dialog.Description>
+                            &lt;form onSubmit={handleSubmitEdit}>
+                              &lt;ItemModal>
+                                &lt;label htmlFor="author">Nome do autor&lt;/label>
+                                &lt;input
+                                  id="author"
+                                  onChange={handleInputChange}
+                                  value={formValue.author || ""}
+                                />
+                              &lt;/ItemModal>
+                              &lt;ItemModal>
+                                &lt;label htmlFor="email">Email&lt;/label>
+                                &lt;input
+                                  id="email"
+                                  type="email"
+                                  onChange={handleInputChange}
+                                  value={formValue.email || ""}
+                                />
+                              &lt;/ItemModal>
+                              &lt;ModalActions>
+                                &lt;button>Editar&lt;/button>
+                                &lt;Dialog.Close asChild>
+                                  &lt;button>Cancelar&lt;/button>
+                                &lt;/Dialog.Close>
+                              &lt;/ModalActions>
+                            &lt;/form>
+                          &lt;/ModalBox>
+                        &lt;/DialogOverlay>
+                      &lt;/Dialog.Portal>
+                    &lt;/Dialog.Root>
+                  );
+                }
+
+                Edit.propTypes = {
+                  authorIdEdit: PropTypes.number.isRequired,
+                };
+            </code>
+          </pre>
         </article>
       </section>
     </div>

@@ -1,164 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>JSDoc: Source: components/books/books.jsx</title>
 
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="styles/prettify-tomorrow.css"
+    />
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css" />
+  </head>
 
-<body>
+  <body>
+    <div id="main">
+      <h1 class="page-title">Source: components/books/books.jsx</h1>
 
-<div id="main">
-
-    <h1 class="page-title">Source: components/books/books.jsx</h1>
-
-    
-
-
-
-    
-    <section>
+      <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from "react";
-import { CreateGlobalContext } from "../../context/globalContextBooks.jsx";
-import { CreateGlobalAuthors } from "../../context/globalContextAuthors.jsx";
-import { Table } from "../Table.jsx";
-import { Book } from "./book.jsx";
+          <pre class="prettyprint source linenums">
+            <code>
+              import React from "react";
+              import { CreateGlobalContext } from "../../context/globalContextBooks.jsx";
+              import { CreateGlobalAuthors } from "../../context/globalContextAuthors.jsx";
+              import { Table } from "../Table.jsx";
+              import { Book } from "./book.jsx";
 
-import * as Dialog from "@radix-ui/react-dialog";
-import {
-  DialogOverlay,
-  ModalBox,
-  ItemModal,
-  ModalActions,
-  DialogTrigger,
-} from "../styles/tables.js";
-import { Center } from "../../global.js";
-import img from "../../img/book.svg";
+              import * as Dialog from "@radix-ui/react-dialog";
+              import {
+                DialogOverlay,
+                ModalBox,
+                ItemModal,
+                ModalActions,
+                DialogTrigger,
+              } from "../styles/tables.js";
+              import { Center } from "../../global.js";
+              import img from "../../img/book.svg";
 
-/**
- * Component to display a list books
- *
- * @returns {JSX.Element}
- */
-export function Books() {
-  const { books, formMethods, createBookHandle } =
-    React.useContext(CreateGlobalContext);
-  const { authors } = React.useContext(CreateGlobalAuthors);
-  const { handleSubmit, register } = formMethods;
+              /**
+              * Component to display a list books
+              *
+              * @returns {JSX.Element}
+              */
+              export function Books() {
+                const { books, formMethods, createBookHandle } =
+                  React.useContext(CreateGlobalContext);
+                const { authors } = React.useContext(CreateGlobalAuthors);
+                const { handleSubmit, register } = formMethods;
 
-  /**
-   * Function to reset the form 
-   */
-  function resetForm() {
-    formMethods.reset();
-  }
+                /**
+                * Function to reset the form 
+                */
+                function resetForm() {
+                  formMethods.reset();
+                }
 
-  return (
-    &lt;Center>
-      &lt;Dialog.Root>
-        &lt;DialogTrigger onClick={resetForm}>
-          Criar Livro &lt;span>+&lt;/span>
-        &lt;/DialogTrigger>
+                return (
+                  &lt;Center>
+                    &lt;Dialog.Root>
+                      &lt;DialogTrigger onClick={resetForm}>
+                        Criar Livro &lt;span>+&lt;/span>
+                      &lt;/DialogTrigger>
 
-        &lt;DialogOverlay>
-          &lt;ModalBox>
-            &lt;Dialog.Title>Crie seu livro&lt;/Dialog.Title>
-            &lt;Dialog.Description>&lt;/Dialog.Description>
+                      &lt;DialogOverlay>
+                        &lt;ModalBox>
+                          &lt;Dialog.Title>Crie seu livro&lt;/Dialog.Title>
+                          &lt;Dialog.Description>&lt;/Dialog.Description>
 
-            &lt;form onSubmit={handleSubmit(createBookHandle)}>
-              &lt;ItemModal>
-                &lt;label htmlFor="bookName">Nome do livro&lt;/label>
-                &lt;input
-                  id="bookName"
-                  {...register("bookName", { required: true })}
-                  placeholder="Digite o nome do livro"
-                />
-              &lt;/ItemModal>
-              &lt;ItemModal>
-                &lt;label htmlFor="pages">Páginas&lt;/label>
-                &lt;input
-                  id="pages"
-                  type="number"
-                  {...register("pages", { required: true })}
-                  placeholder="Digite a quantidade de páginas"
-                />
-              &lt;/ItemModal>
+                          &lt;form onSubmit={handleSubmit(createBookHandle)}>
+                            &lt;ItemModal>
+                              &lt;label htmlFor="bookName">Nome do livro&lt;/label>
+                              &lt;input
+                                id="bookName"
+                                {...register("bookName", { required: true })}
+                                placeholder="Digite o nome do livro"
+                              />
+                            &lt;/ItemModal>
+                            &lt;ItemModal>
+                              &lt;label htmlFor="pages">Páginas&lt;/label>
+                              &lt;input
+                                id="pages"
+                                type="number"
+                                {...register("pages", { required: true })}
+                                placeholder="Digite a quantidade de páginas"
+                              />
+                            &lt;/ItemModal>
 
-              &lt;ItemModal>
-                &lt;label htmlFor="authors">Autor&lt;/label>
+                            &lt;ItemModal>
+                              &lt;label htmlFor="authors">Autor&lt;/label>
 
-                &lt;select
-                  name="authors"
-                  id="authors"
-                  {...register("author", { required: true })}
-                  defaultValue="Selecione o autor"
-                >
-                  {authors.length != 0 ? (
-                    authors.map((author) => {
-                      return (
-                        &lt;option key={author.authorId} value={author.authorId}>
-                          {author.author}
-                        &lt;/option>
-                      );
-                    })
-                  ) : (
-                    &lt;option value="Selecione seu autor">
-                      Selecione seu autor
-                    &lt;/option>
-                  )}
-                &lt;/select>
-              &lt;/ItemModal>
-              &lt;ModalActions>
-                &lt;button>Criar&lt;/button>
-                &lt;Dialog.Close asChild>
-                  &lt;button>Cancelar&lt;/button>
-                &lt;/Dialog.Close>
-              &lt;/ModalActions>
-            &lt;/form>
-          &lt;/ModalBox>
-        &lt;/DialogOverlay>
-      &lt;/Dialog.Root>
+                              &lt;select
+                                name="authors"
+                                id="authors"
+                                {...register("author", { required: true })}
+                                defaultValue="Selecione o autor"
+                              >
+                                {authors.length != 0 ? (
+                                  authors.map((author) => {
+                                    return (
+                                      &lt;option key={author.authorId} value={author.authorId}>
+                                        {author.author}
+                                      &lt;/option>
+                                    );
+                                  })
+                                ) : (
+                                  &lt;option value="Selecione seu autor">
+                                    Selecione seu autor
+                                  &lt;/option>
+                                )}
+                              &lt;/select>
+                            &lt;/ItemModal>
+                            &lt;ModalActions>
+                              &lt;button>Criar&lt;/button>
+                              &lt;Dialog.Close asChild>
+                                &lt;button>Cancelar&lt;/button>
+                              &lt;/Dialog.Close>
+                            &lt;/ModalActions>
+                          &lt;/form>
+                        &lt;/ModalBox>
+                      &lt;/DialogOverlay>
+                    &lt;/Dialog.Root>
 
-      &lt;Table
-        infoSection={books}
-        img={img}
-        tableHead={["Id", "Livro", "Autor", "Páginas", "Ações"]}
-        SectionComponent={Book}
-        message={"Livro"}
-        name={"name"}
-        id={"id"}
-      />
-    &lt;/Center>
-  );
-}
-</code></pre>
+                    &lt;Table
+                      infoSection={books}
+                      img={img}
+                      tableHead={["Id", "Livro", "Autor", "Páginas", "Ações"]}
+                      SectionComponent={Book}
+                      message={"Livro"}
+                      name={"name"}
+                      id={"id"}
+                    />
+                  &lt;/Center>
+                );
+              }
+            </code>
+          </pre>
         </article>
-    </section>
+      </section>
+    </div>
 
+    <nav>
+      <h2><a href="index.html">Home</a></h2>
+      <h3>Global</h3>
+      <ul>
+        <li><a href="global.html#App">App</a></li>
+        <li><a href="global.html#Author">Author</a></li>
+        <li><a href="global.html#Authors">Authors</a></li>
+        <li><a href="global.html#Book">Book</a></li>
+        <li><a href="global.html#Books">Books</a></li>
+        <li><a href="global.html#ContextAuthors">ContextAuthors</a></li>
+        <li><a href="global.html#ContextGlobal">ContextGlobal</a></li>
+        <li>
+          <a href="global.html#CreateGlobalAuthors">CreateGlobalAuthors</a>
+        </li>
+        <li>
+          <a href="global.html#CreateGlobalContext">CreateGlobalContext</a>
+        </li>
+        <li><a href="global.html#Edit">Edit</a></li>
+        <li><a href="global.html#Filters">Filters</a></li>
+        <li><a href="global.html#Header">Header</a></li>
+        <li><a href="global.html#Message">Message</a></li>
+        <li><a href="global.html#Preview">Preview</a></li>
+        <li><a href="global.html#Remove">Remove</a></li>
+        <li><a href="global.html#Table">Table</a></li>
+      </ul>
+    </nav>
 
+    <br class="clear" />
 
+    <footer>
+      Documentation generated by
+      <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Jan 26
+      2025 10:52:37 GMT-0300 (Horário Padrão de Brasília)
+    </footer>
 
-</div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#Author">Author</a></li><li><a href="global.html#Authors">Authors</a></li><li><a href="global.html#Book">Book</a></li><li><a href="global.html#Books">Books</a></li><li><a href="global.html#ContextAuthors">ContextAuthors</a></li><li><a href="global.html#ContextGlobal">ContextGlobal</a></li><li><a href="global.html#CreateGlobalAuthors">CreateGlobalAuthors</a></li><li><a href="global.html#CreateGlobalContext">CreateGlobalContext</a></li><li><a href="global.html#Edit">Edit</a></li><li><a href="global.html#Filters">Filters</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Message">Message</a></li><li><a href="global.html#Preview">Preview</a></li><li><a href="global.html#Remove">Remove</a></li><li><a href="global.html#Table">Table</a></li></ul>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Jan 26 2025 10:52:37 GMT-0300 (Horário Padrão de Brasília)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
-</body>
+    <script>
+      prettyPrint();
+    </script>
+    <script src="scripts/linenumber.js"></script>
+  </body>
 </html>
