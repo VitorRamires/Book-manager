@@ -1,30 +1,8 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import styled from "styled-components";
 
-export const DialogOverlay = styled(Dialog.Overlay)`
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.479);
-  position: fixed;
-  inset: 0;
-  animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
-`;
 
-export const ModalBox = styled(Dialog.Content)`
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 400px;
-  max-width: 100%;
-  background: #fff;
-  padding: 30px;
-  border-radius: 5px;
-  max-height: 90%;
-  overflow-y: auto;
-  color: #263072;
-  font-family: "Montserrat", Sans-serif;
-`;
+
 
 export const DialogDescription = styled(Dialog.Description)`
   margin-bottom: 5px;
@@ -46,7 +24,7 @@ export const ModalActions = styled.div`
     width: 100px;
     padding: 10px 5px;
     cursor: pointer;
-    background-color: rgb(235, 235, 235);
+    background-color: #ebebeb;
     outline: none;
     border: none;
     border-radius: 5px;
@@ -56,12 +34,12 @@ export const ModalActions = styled.div`
     font-size: 1.05rem;
 
     &:hover {
-      background-color: rgb(199, 199, 199);
+      background-color: #c7c7c7;
     }
 
     &:disabled {
-      background-color: rgb(235, 235, 235);
-      color: rgb(196, 196, 196);
+      background-color: #ebebeb;
+      color: #c4c4c4;
       cursor: not-allowed;
     }
 
@@ -78,7 +56,7 @@ export const ModalActions = styled.div`
 `;
 
 export const Span = styled.span`
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #263072;
 
   &.alert {

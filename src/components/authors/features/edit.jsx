@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState, useContext, useEffect } from "react";
 import { CreateGlobalAuthors } from "../../../context/globalContextAuthors";
 import PropTypes from "prop-types";

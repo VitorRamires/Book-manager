@@ -1,10 +1,10 @@
-import React from "react";
+import { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import { Message } from "../components/messages/messages.jsx";
-import { TableBox, TableWrapper } from "../components/styles/tables.js";
+import { TableBox, TableWrapper, SortButton } from "../components/styles/tables.js";
 import { Filters } from "./filters.jsx";
-
-
+import { CreateGlobalContext } from "../context/globalContextBooks.jsx";
+import { CreateGlobalAuthors } from "../context/globalContextAuthors.jsx";
 
 /**
  * Component to display table of authors and books
@@ -17,7 +17,7 @@ import { Filters } from "./filters.jsx";
  * @param {string} props.message - Message to display when no data is available
  * @param {string} props.name - Name of the filter
  * @param {string} props.id - ID of the filter
- * @returns {JSX.Element} 
+ * @returns {JSX.Element}
  */
 export function Table({
   infoSection,
@@ -28,15 +28,41 @@ export function Table({
   name,
   id,
 }) {
-  const [inputText, setInputText] = React.useState("");
-  const [filterOption, setFilterOption] = React.useState("all");
-  const [buttonActive, setButtonActive] = React.useState("all");
+  const { setBooks } = useContext(CreateGlobalContext);
+  const { setAuthors } = useContext(CreateGlobalAuthors);
 
+  const [inputText, setInputText] = useState("");
+  const [filterOption, setFilterOption] = useState("all");
+  const [buttonActive, setButtonActive] = useState("all");
+  const [sortDirection, setSortDirection] = useState("");
+
+  /**
+   * Handles the sorting of the content
+   *
+   * @param {string} key - The key to sort by
+   */
+  function handleSort(key) {
+    const direction = sortDirection === "asc" ? "desc" : "asc";
+    setSortDirection(direction);
+
+    const sortedContent = [...infoSection].sort((a, b) => {
+      if (a[key] < b[key]) {
+        return direction === "asc" ? -1 : 1;
+      }
+
+      if (a[key] > b[key]) {
+        return direction === "asc" ? 1 : -1;
+      }
+      return 0;
+    });
+
+    name == "author" ? setAuthors(sortedContent) : setBooks(sortedContent);
+  }
 
   /**
    * Function to manage when option filter is active and working
-   * 
-   * @param {string} filterOption 
+   *
+   * @param {string} filterOption
    * @return {void}
    */
   function handleFilter(filterOption) {
@@ -97,6 +123,8 @@ export function Table({
           </>
         )}
       </TableWrapper>
+
+      <SortButton onClick={() => handleSort(name)}>Ordenar {message} por : <strong>{sortDirection === "asc" ? "A-Z" : "Z-A"}</strong> </SortButton>
     </>
   );
 }

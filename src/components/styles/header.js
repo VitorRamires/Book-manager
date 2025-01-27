@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const NavHeader = styled.nav`
-  position: sticky;
+  position: relative;
   top: 0;
   width: 100%;
   background: #1e4175;
   font-size: 1.5rem;
   padding: 50px 25px;
-  color: rgb(255, 255, 255);
+  color: #ffffff;
   transition: 0.5s;
   display: flex;
   align-items: center;
@@ -54,14 +54,14 @@ export const NavHeader = styled.nav`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgb(172, 172, 172);
+    color: #acacac;
     vertical-align: middle;
     text-decoration: none;
     height: 100%;
     transition: 0.1s;
     border-radius: 5px 0 0 5px;
     padding: 15px;
-    background-color: rgb(236, 236, 236);
+    background-color: #ececec;
     font-size: 1.4rem;
 
     @media screen and (max-width: 885px) {
@@ -80,7 +80,7 @@ export const NavHeader = styled.nav`
 
   a.active {
     background-color: #199fe3;
-    color: rgb(255, 255, 255);
+    color: #ffffff;
   }
 `;
 

@@ -1,36 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import styled from "styled-components";
 
-export const DialogOverlay = styled(Dialog.Overlay)`
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.479);
-  position: fixed;
-  inset: 0;
-  animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 99;
-`;
 
-export const ModalBox = styled(Dialog.Content)`
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 400px;
-  max-width: 100%;
-  background: #fff;
-  padding: 30px;
-  border-radius: 5px;
-  max-height: 90%;
-  overflow-y: auto;
-  color: #263072;
-  font-family: "Montserrat", Sans-serif;
-
-  h2 {
-    font-family: "Montserrat", Sans-serif;
-    margin-bottom: 35px;
-  }
-`;
 
 export const DialogTrigger = styled(Dialog.Trigger)`
   width: 200px;
@@ -136,8 +107,8 @@ export const TableBox = styled.table`
 
   thead tr {
     background-color: #199fe3;
-    font-size: 1.2rem;
-    color: rgb(255, 255, 255);
+    font-size: 1.1rem;
+    color: #ffffff;
     clip-path: xywh(0 0 100% 85% round 0.3em);
   }
 
@@ -206,7 +177,7 @@ export const InputFilter = styled.div`
 
   &:focus-within {
     border-color: #199fe3;
-    box-shadow: 0 4px 4px 0 rgba(43, 43, 43, 0.21);
+    box-shadow: 0 4px 4px 0 #2b2b2b;
 
     img {
       width: 25px;
@@ -232,21 +203,29 @@ export const ButtonsFilterWrapper = styled.div`
   justify-content: start;
   gap: 15px;
 
-  button{
+  button {
     width: max-content;
-    padding:10px 15px;
-    margin:5px 0 25px 0;
+    padding: 10px 15px;
+    margin: 5px 0 25px 0;
     font-family: "Montserrat";
-    background-color:rgb(161, 161, 161);
+    background-color: #a1a1a1;
     color: #ffffff;
     cursor: pointer;
     transition: 0.2s;
 
-    &.activated-button{
-      background-color: rgb(18, 103, 146);
+    &.activated-button {
+      background-color: #126792;
     }
   }
-
-  
 `;
 
+export const SortButton = styled.button`
+  width: 170px;
+  max-width:100%;
+  padding: 10px 5px;
+  background-color:#bdbdbd;
+  color:#ffffff;
+  margin-top:15px;
+  cursor: pointer;
+  font-family: "Montserrat";
+`;

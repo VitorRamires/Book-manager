@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import { useState, useEffect, createContext } from "react";
 import { useForm } from "react-hook-form";
-
 
 /**
  * @typedef {Object} Author
@@ -9,29 +8,28 @@ import { useForm } from "react-hook-form";
  * @property {string} email
  * @property {number} authorId
  * @property {string} date
- * 
+ *
  */
 
 /**
  * Context managing global author state
  */
-export const CreateGlobalAuthors = React.createContext({});
-
+export const CreateGlobalAuthors = createContext({});
 
 /**
  * Global Context to manage author
- * 
+ *
  * @param {Object} props - React component props
  * @param {React.ReactNode} props.children - Child Component what have context access
  * @returns {JSX.Element}
  */
 export function ContextAuthors({ children }) {
-  const [authors, setAuthors] =  React.useState([]);
-  const [authorsId, setAuthorsId] =  React.useState(0);
-  const [authorNotExistMessage, setAuthorNotExistMessage] =  React.useState("");
+  const [authors, setAuthors] = useState([]);
+  const [authorsId, setAuthorsId] = useState(0);
+  const [authorNotExistMessage, setAuthorNotExistMessage] = useState("");
   const formMethods = useForm();
 
-  React.useEffect(() => {
+  useEffect(() => {
     const getAuthors = JSON.parse(localStorage.getItem("authors")) || [];
     setAuthors(getAuthors);
     if (getAuthors.length !== 0) {
@@ -40,8 +38,6 @@ export function ContextAuthors({ children }) {
     }
   }, []);
 
-
-  
   /**
    * Handles the creation of a new author
    *

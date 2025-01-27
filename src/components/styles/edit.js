@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const DialogOverlay = styled(Dialog.Overlay)`
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.479);
+  background-color: #000000;
   position: fixed;
   inset: 0;
   animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);

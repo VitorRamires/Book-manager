@@ -13,13 +13,13 @@ export const MessageStyle = styled.div`
   }
 
   span {
-    color: rgb(70, 83, 134);
+    color: #465386;
     font-weight: bold;
   }
 
   p {
     margin: 3px 0;
-    color: rgb(70, 83, 134);
+    color: #465386;
     margin:15px 0;
   }
 `;

@@ -1,4 +1,4 @@
-import React from "react";
+import { useContext } from "react";
 import { CreateGlobalContext } from "../../context/globalContextBooks.jsx";
 import { CreateGlobalAuthors } from "../../context/globalContextAuthors.jsx";
 import { Table } from "../Table.jsx";
@@ -22,12 +22,12 @@ import img from "../../img/book.svg";
  */
 export function Books() {
   const { books, formMethods, createBookHandle } =
-    React.useContext(CreateGlobalContext);
-  const { authors } = React.useContext(CreateGlobalAuthors);
+    useContext(CreateGlobalContext);
+  const { authors } = useContext(CreateGlobalAuthors);
   const { handleSubmit, register } = formMethods;
 
   /**
-   * Function to reset the form 
+   * Function to reset the form
    */
   function resetForm() {
     formMethods.reset();

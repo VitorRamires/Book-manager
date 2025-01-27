@@ -1,4 +1,5 @@
 import { createGlobalStyle, styled } from "styled-components";
+import * as Dialog from "@radix-ui/react-dialog";
 
 export const GlobalCss = createGlobalStyle`
 
@@ -89,5 +90,36 @@ export const Center = styled.div`
 
   @media screen and (max-width:885px){
     margin: 25px auto;
+  }
+`;
+
+
+export const DialogOverlay = styled(Dialog.Overlay)`
+  width: 100%;
+  height: 100%;
+  background-color:rgba(0, 0, 0, 0.51);
+  position: fixed;
+  inset: 0;
+  animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 99;
+`;
+
+export const ModalBox = styled(Dialog.Content)`
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  max-width: 100%;
+  background: #fff;
+  padding: 30px;
+  border-radius: 5px;
+  max-height: 90%;
+  overflow-y: auto;
+  color: #263072;
+  font-family: "Montserrat", Sans-serif;
+
+  h2 {
+    font-family: "Montserrat", Sans-serif;
   }
 `;

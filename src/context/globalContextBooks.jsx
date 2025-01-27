@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import { useState, useEffect, createContext } from "react";
 import { useForm } from "react-hook-form";
 
 /**
@@ -12,26 +12,24 @@ import { useForm } from "react-hook-form";
  *
  */
 
-
 /**
  * Context managing global book state
  */
-export const CreateGlobalContext = React.createContext({});
-
+export const CreateGlobalContext = createContext({});
 
 /**
  * Global Context to manage books
- * 
+ *
  * @param {Object} props - React component props
  * @param {React.ReactNode} props.children - Child Component what have context access
  * @returns {{JSX.Element}}
  */
 export function ContextGlobal({ children }) {
-  const [books, setBooks] = React.useState([]);
-  const [ids, setIds] = React.useState(0);
+  const [books, setBooks] = useState([]);
+  const [ids, setIds] = useState(0);
   const formMethods = useForm();
 
-  React.useEffect(() => {
+  useEffect(() => {
     const getBooks = JSON.parse(localStorage.getItem("books")) || [];
     setBooks(getBooks);
 
@@ -40,7 +38,6 @@ export function ContextGlobal({ children }) {
       setIds(lastIdBook + 1);
     }
   }, []);
-
 
   /**
    * Handles the creation of a new book

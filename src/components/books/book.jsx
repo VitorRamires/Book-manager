@@ -8,14 +8,13 @@ import { Remove } from "./features/remove.jsx";
 import { Actions } from "../styles/tables.js";
 import PropTypes from "prop-types";
 
-
 /**
  * Component to display a unique book
- * 
+ *
  * @param {Object} props - React component props
  * @param {Object} props.componentInfo - Object with all book information
  * @returns {JSX.Element}
-*/
+ */
 export function Book({ componentInfo }) {
   const { authors } = useContext(CreateGlobalAuthors);
 

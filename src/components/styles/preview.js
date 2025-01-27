@@ -1,34 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import styled from "styled-components";
 
-export const DialogOverlay = styled(Dialog.Overlay)`
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.479);
-  position: fixed;
-  inset: 0;
-  animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
-`;
-
-export const ModalBox = styled(Dialog.Content)`
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 400px;
-  max-width: 100%;
-  background: #fff;
-  padding: 30px;
-  border-radius: 5px;
-  max-height: 90%;
-  overflow-y: auto;
-  color: #263072;
-  font-family: "Montserrat", Sans-serif;
-
-  h2 {
-    font-family: "Montserrat", Sans-serif;
-  }
-`;
 
 export const DialogTrigger = styled(Dialog.Trigger)`
   cursor: pointer;
@@ -49,7 +21,7 @@ export const ItemModal = styled.div`
 
   h3 {
     font-family: "Montserrat", Sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: normal;
   }
 

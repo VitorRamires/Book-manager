@@ -5,28 +5,27 @@ import logo from "../../img/logo.png";
 import arrow from "../../img/arrow.svg";
 
 /**
- * Component to display Header 
- * 
- * @returns {JSX.Element} 
+ * Component to display Header
+ *
+ * @returns {JSX.Element}
  */
 export function Header() {
   const [menuOpenened, setMenuOpened] = useState(false);
   const [resized, setResized] = useState(null);
   const mobileSizeChanger = 885;
 
-
   /**
    * Function handle to change the menu state
-   * 
+   *
    * @returns {void}
    */
   function toggleMenu() {
     setMenuOpened(!menuOpenened);
-  } 
+  }
 
   /**
-   * Function handle to observe size screen and change state 
-   * 
+   * Function handle to observe size screen and change state
+   *
    * @returns {void}
    */
   function verifySizeScreen() {
