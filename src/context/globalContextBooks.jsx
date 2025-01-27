@@ -10,21 +10,21 @@ import { useForm } from "react-hook-form";
  * @property {string} authorId - The unique identifier for the author of the book
  * @property {string} authorName - The name of the author of the book
  * @property {string} date - The date the book was created
- */
+*/
 
 /**
- * @typedef {Object} GlobalContextValue
+ * @typedef {Object} GlobalContextValueBook
  * @property {Book[]} books - The list of books
  * @property {function} setBooks - Function to set the list of books
  * @property {function} createBookHandle - Function to create a new book
  * @property {number} ids - The current ID counter
  * @property {Object} formMethods - The form methods from react-hook-form
- */
+*/
 
 /**
  * Context managing global book state
- */
-export const CreateGlobalContext = createContext(/** @type {GlobalContextValue} */ ({}));
+*/
+export const CreateGlobalContext = createContext(/** @type {GlobalContextValueBook} */ ({}));
 
 /**
  * Global Context to manage books
@@ -32,7 +32,7 @@ export const CreateGlobalContext = createContext(/** @type {GlobalContextValue} 
  * @param {Object} props - React component props
  * @param {React.ReactNode} props.children - Child Component what have context access
  * @returns {{JSX.Element}}
- */
+*/
 export function ContextGlobal({ children }) {
   const [books, setBooks] = useState([]);
   const [ids, setIds] = useState(0);

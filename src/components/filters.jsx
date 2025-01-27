@@ -18,7 +18,7 @@ import { useRef } from "react";
  * @param {string} props.id - Filter id option
  * @param {string} props.message - Show what filter section will display
  * @param {Function} props.handleFilter - Function to show what filter is activated
- * @returns 
+ * @returns {JSX.Element}
  */
 export function Filters({
   inputText,

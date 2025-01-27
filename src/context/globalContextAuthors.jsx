@@ -4,17 +4,28 @@ import { useForm } from "react-hook-form";
 
 /**
  * @typedef {Object} Author
- * @property {string} author
- * @property {string} email
- * @property {number} authorId
- * @property {string} date
+ * @property {string} author - The name of the author
+ * @property {string} email - The email of the author
+ * @property {number} authorId - The unique identifier for the author
+ * @property {string} date - The date the book was created
  *
- */
+*/
+
+/**
+ * @typedef {Object} GlobalContextValueAuthor
+ * @property {Author[]} authors - The list of authors
+ * @property {function} setAuthors, - Function to set the list of authors
+ * @property {function} createAuthorHandle, - Function to create a new author
+ * @property {number} authorsId, - The current ID counter
+ * @property {Object} formMethods - The form methods from react-hook-form
+ * @property {string} authorNotExistMessage - message if exist or not an author
+ * @property {function} setAuthorNotExistMessage - method set a message if exist or not an author
+*/
 
 /**
  * Context managing global author state
- */
-export const CreateGlobalAuthors = createContext(/** @type {GlobalContextValue} */ ({}));
+*/
+export const CreateGlobalAuthors = createContext(/** @type {GlobalContextValueAuthor} */ ({}));
 
 /**
  * Global Context to manage author
