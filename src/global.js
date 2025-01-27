@@ -4,7 +4,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 // Estilos globais para a aplicação
 export const GlobalCss = createGlobalStyle`
 
-  *{
+  * {
     box-sizing: border-box;
     padding:0;
     margin:0;
@@ -17,18 +17,18 @@ export const GlobalCss = createGlobalStyle`
   }
   
 
-  img{
+  img {
     width: 100%;
     height: 100%;
   }
 
-  body{
+  body {
     height: 100vh;
     background-color:rgb(255, 255, 255);
     font-family: "Montserrat";
   }
 
-  button{
+  button {
     padding:5px;
   }
 
@@ -72,7 +72,7 @@ export const GlobalCss = createGlobalStyle`
   }
 
   @keyframes hoverBtn {
-    0%{
+    0% {
       box-shadow: 0 0 0 0 #36baf4;
     }
   }
