@@ -110,7 +110,7 @@ export const ModalBox = styled(Dialog.Content)`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 400px;
-  max-width: 100%;
+  max-width: 95%;
   background: #fff;
   padding: 30px;
   border-radius: 5px;

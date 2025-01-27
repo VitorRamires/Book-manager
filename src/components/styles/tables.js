@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 export const DialogTrigger = styled(Dialog.Trigger)`
   width: 200px;
+  max-width: 100%;
   font-size: 1.5rem;
   height: 60px;
   background-color: #199fe3;
@@ -23,6 +24,10 @@ export const DialogTrigger = styled(Dialog.Trigger)`
   font-family: "Montserrat", Sans-serif;
   -webkit-box-shadow: 0 0 0 0.35em transparent;
   box-shadow: 0 0 0 0.35em transparent;
+
+  @media screen and (max-width:350px){
+    font-size: 1.3rem;
+  }
 
   &:hover {
     animation: hoverBtn 1s;
@@ -177,7 +182,7 @@ export const InputFilter = styled.div`
 
   &:focus-within {
     border-color: #199fe3;
-    box-shadow: 0 4px 4px 0 #2b2b2b;
+    box-shadow: 0 4px 4px 0 rgba(43, 43, 43, 0.19);
 
     img {
       width: 25px;
@@ -199,19 +204,25 @@ export const InputFilter = styled.div`
 
 export const ButtonsFilterWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: start;
   gap: 15px;
+  margin-bottom:25px;
 
   button {
     width: max-content;
     padding: 10px 15px;
-    margin: 5px 0 25px 0;
+    margin-top:5px;
     font-family: "Montserrat";
     background-color: #a1a1a1;
     color: #ffffff;
     cursor: pointer;
     transition: 0.2s;
+
+    @media screen and (max-width:377px){
+      width: 100%;
+    }
 
     &.activated-button {
       background-color: #126792;
