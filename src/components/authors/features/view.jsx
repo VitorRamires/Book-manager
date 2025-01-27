@@ -2,9 +2,8 @@ import { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 
 import * as Dialog from "@radix-ui/react-dialog";
+import { DialogOverlay, ModalBox } from "../../../global.js";
 import {
-  DialogOverlay,
-  ModalBox,
   ItemModal,
   ModalActions,
   DialogTrigger,
@@ -13,7 +12,6 @@ import {
 } from "../../styles/preview";
 import previewLogo from "../../../img/preview.svg";
 import { CreateGlobalAuthors } from "../../../context/globalContextAuthors";
-
 
 /**
  * Component to display the author resume infos
@@ -30,7 +28,6 @@ export function Preview({ authorIdPreview }) {
   let filterIdAuthorPreview =
     authors.filter((item) => item.authorId === getIdPreview)[0] || {};
 
-
   /**
    * Function to capture and save the author id in state
    *
@@ -40,7 +37,6 @@ export function Preview({ authorIdPreview }) {
     setGetIdPreview(authorIdPreview);
   }
 
-  
   useEffect(() => {
     setGetIdPreview(authorIdPreview);
   }, [authorIdPreview]);

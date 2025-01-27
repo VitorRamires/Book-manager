@@ -3,9 +3,8 @@ import { CreateGlobalAuthors } from "../../../context/globalContextAuthors";
 import PropTypes from "prop-types";
 
 import * as Dialog from "@radix-ui/react-dialog";
+import { DialogOverlay, ModalBox } from "../../../global.js";
 import {
-  DialogOverlay,
-  ModalBox,
   ItemModal,
   ModalActions,
   DialogTrigger,
@@ -31,10 +30,9 @@ export function Preview({ bookIdPreview }) {
   let filterIdPreview =
     books.filter((item) => item.id === getIdPreview)[0] || [];
 
-
   /**
    * Funtion to save a id of book clicked
-   * 
+   *
    * @returns {void}
    */
   function getIdPreviewHandle() {

@@ -4,20 +4,19 @@ import { Author } from "./author.jsx";
 import { Center } from "../../global.js";
 import { Table } from "../Table.jsx";
 
+import * as Dialog from "@radix-ui/react-dialog";
+import { DialogOverlay, ModalBox } from "../../global.js";
 import {
-  DialogOverlay,
-  ModalBox,
   ItemModal,
   ModalActions,
   DialogTrigger,
   AlreadyCreated,
 } from "../styles/tables.js";
-import * as Dialog from "@radix-ui/react-dialog";
 import img from "../../img/Author.svg";
 
 /**
  * Component to display a list Authors
- * 
+ *
  * @returns {JSX.Element}
  */
 export function Authors() {
@@ -31,7 +30,7 @@ export function Authors() {
   const { handleSubmit, register } = formMethods;
 
   /**
-   * Function to reset the form 
+   * Function to reset the form
    */
   function resetForm() {
     formMethods.reset();

@@ -3,9 +3,8 @@ import PropTypes from "prop-types";
 import { CreateGlobalContext } from "../../../context/globalContextBooks";
 import { CreateGlobalAuthors } from "../../../context/globalContextAuthors";
 import * as Dialog from "@radix-ui/react-dialog";
+import { DialogOverlay, ModalBox } from "../../../global.js";
 import {
-  DialogOverlay,
-  ModalBox,
   ModalActions,
   DialogTrigger,
   Span,

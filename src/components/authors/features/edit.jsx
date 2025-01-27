@@ -3,16 +3,9 @@ import { CreateGlobalAuthors } from "../../../context/globalContextAuthors";
 import PropTypes from "prop-types";
 
 import * as Dialog from "@radix-ui/react-dialog";
-import {
-  DialogOverlay,
-  ModalBox,
-  ItemModal,
-  ModalActions,
-  DialogTrigger,
-} from "../../styles/edit";
+import { DialogOverlay, ModalBox } from "../../../global.js";
+import { ItemModal, ModalActions, DialogTrigger } from "../../styles/edit";
 import editLogo from "../../../img/edit.svg";
-
-
 
 /**
  * Component to display the book resume infos
@@ -31,17 +24,16 @@ export function Edit({ authorIdEdit }) {
 
   /**
    * Function catch the id of author Clicked
-   * 
+   *
    * @return {void}
-  */
+   */
   function getIdHandle() {
     setGetId(authorIdEdit);
   }
 
-
   /**
    * Function to save changes of author in state when input change is triggered
-   * 
+   *
    * @param {Event} event - input change event
    * @param {EventTarget & {id:string, value:string}} event.target - targets elements of event
    * @return {void}
@@ -51,10 +43,9 @@ export function Edit({ authorIdEdit }) {
     setFormValues({ ...formValue, [id]: value });
   }
 
-
   /**
    * Function to apply the uptades to author the changes when form is submitted
-   * 
+   *
    * @param {Event} event - The form submit event
    * @return {void}
    */

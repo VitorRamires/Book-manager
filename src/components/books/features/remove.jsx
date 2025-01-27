@@ -3,9 +3,8 @@ import { CreateGlobalContext } from "../../../context/globalContextBooks";
 import PropTypes from "prop-types";
 
 import * as Dialog from "@radix-ui/react-dialog";
+import { DialogOverlay, ModalBox } from "../../../global.js";
 import {
-  DialogOverlay,
-  ModalBox,
   ModalActions,
   DialogTrigger,
   DialogDescription,
@@ -13,10 +12,9 @@ import {
 } from "../../styles/remove";
 import removeLogo from "../../../img/trash.svg";
 
-
 /**
  * Component to remove a book
- * 
+ *
  * @param {Object} props - React component props
  * @param {number} props.bookIdRemove -Ids of books
  * @returns {JSX.Element}
@@ -29,10 +27,9 @@ export function Remove({ bookIdRemove }) {
   let actualItem = books.filter((item) => item.id === getIdAuthorRemove)[0];
   let removedsArray = books.filter((item) => item.id !== actualItem.id);
 
-  
   /**
    * Funtion to save a new filtered array and save on localStorage
-   * 
+   *
    * @returns {void}
    */
   function filterArray() {

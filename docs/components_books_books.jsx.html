@@ -30,17 +30,18 @@
               import { CreateGlobalAuthors } from "../../context/globalContextAuthors.jsx";
               import { Table } from "../Table.jsx";
               import { Book } from "./book.jsx";
-
+              
+              
               import * as Dialog from "@radix-ui/react-dialog";
+              import { DialogOverlay, ModalBox } from "../../global.js";
               import {
-                DialogOverlay,
-                ModalBox,
                 ItemModal,
                 ModalActions,
                 DialogTrigger,
               } from "../styles/tables.js";
               import { Center } from "../../global.js";
               import img from "../../img/book.svg";
+              
 
               /**
               * Component to display a list books

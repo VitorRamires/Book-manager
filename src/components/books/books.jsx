@@ -4,10 +4,10 @@ import { CreateGlobalAuthors } from "../../context/globalContextAuthors.jsx";
 import { Table } from "../Table.jsx";
 import { Book } from "./book.jsx";
 
+
 import * as Dialog from "@radix-ui/react-dialog";
+import { DialogOverlay, ModalBox } from "../../global.js";
 import {
-  DialogOverlay,
-  ModalBox,
   ItemModal,
   ModalActions,
   DialogTrigger,
