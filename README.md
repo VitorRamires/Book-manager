@@ -7,6 +7,6 @@ Neste projeto, foi utilizado como tecnologia principal o React (JSX), utilizando
 O projeto procurou seguir as boas práticas em React como a reutilização de código e componentes, a prática da responsabilidade única e o uso de nomenclaturas descritivas.
 
 
-Para rodar o projeto, basta no terminal digitar o comando "npm run dev"
+Para rodar o projeto, basta no terminal digitar o comando "npm run dev". E para instalar as dependências, basta digitar no terminal "npm install"
 
 
