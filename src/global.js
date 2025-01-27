@@ -1,6 +1,7 @@
 import { createGlobalStyle, styled } from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
 
+// Estilos globais para a aplicação
 export const GlobalCss = createGlobalStyle`
 
   *{
@@ -78,6 +79,7 @@ export const GlobalCss = createGlobalStyle`
 
 `;
 
+// Componente centralizado para o layout principal
 export const Center = styled.div`
   position: relative;
   width: 1360px;
@@ -93,7 +95,7 @@ export const Center = styled.div`
   }
 `;
 
-
+// Estilo para o overlay do diálogo modal
 export const DialogOverlay = styled(Dialog.Overlay)`
   width: 100%;
   height: 100%;
@@ -104,6 +106,7 @@ export const DialogOverlay = styled(Dialog.Overlay)`
   z-index: 99;
 `;
 
+// Estilo para o conteúdo do diálogo modal
 export const ModalBox = styled(Dialog.Content)`
   position: relative;
   top: 50%;

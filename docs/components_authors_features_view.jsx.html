@@ -23,113 +23,111 @@
 
       <section>
         <article>
-          <pre class="prettyprint source linenums">
+          <pre
+            class="prettyprint source linenums">
             <code>
-              import { useState, useEffect, useContext } from "react";
-              import PropTypes from "prop-types";
-              
-              import * as Dialog from "@radix-ui/react-dialog";
-              import { DialogOverlay, ModalBox } from "../../../global.js";
-              import {
-                ItemModal,
-                ModalActions,
-                DialogTrigger,
-                DialogTitle,
-                ViewInfoDinamic,
-              } from "../../styles/preview";
-              import previewLogo from "../../../img/preview.svg";
-              import { CreateGlobalAuthors } from "../../../context/globalContextAuthors";
+                import { useState, useEffect, useContext } from "react";
+                import PropTypes from "prop-types";
 
-
-              /**
-              * Component to display the author resume infos
-              *
-              * @param {Object} props - React component props
-              * @param {number} props.authorIdPreview - Ids of authors
-              * @returns {JSX.Element}
-              */
-              export function Preview({ authorIdPreview }) {
-                const [getIdPreview, setGetIdPreview] = useState(authorIdPreview);
-
-                const { authors } = useContext(CreateGlobalAuthors);
-
-                let filterIdAuthorPreview =
-                  authors.filter((item) => item.authorId === getIdPreview)[0] || {};
-
+                import * as Dialog from "@radix-ui/react-dialog";
+                import { DialogOverlay, ModalBox } from "../../../global.js";
+                import {
+                  ItemModal,
+                  ModalActions,
+                  DialogTrigger,
+                  DialogTitle,
+                  ViewInfoDinamic,
+                } from "../../styles/preview";
+                import previewLogo from "../../../img/preview.svg";
+                import { CreateGlobalAuthors } from "../../../context/globalContextAuthors";
 
                 /**
-                * Function to capture and save the author id in state
+                * Component to display the author resume infos
                 *
-                * @return {void}
+                * @param {Object} props - React component props
+                * @param {number} props.authorIdPreview - Ids of authors
+                * @returns {JSX.Element}
                 */
-                function getIdAuthorPreviewHandle() {
-                  setGetIdPreview(authorIdPreview);
+                export function Preview({ authorIdPreview }) {
+                  const [getIdPreview, setGetIdPreview] = useState(authorIdPreview);
+
+                  const { authors } = useContext(CreateGlobalAuthors);
+
+                  let filterIdAuthorPreview =
+                    authors.filter((item) => item.authorId === getIdPreview)[0] || {};
+
+                  /**
+                  * Function to capture and save the author id in state
+                  *
+                  * @return {void}
+                  */
+                  function getIdAuthorPreviewHandle() {
+                    setGetIdPreview(authorIdPreview);
+                  }
+
+                  useEffect(() => {
+                    setGetIdPreview(authorIdPreview);
+                  }, [authorIdPreview]);
+
+                  return (
+                    &lt;Dialog.Root>
+                      &lt;DialogTrigger>
+                        &lt;img
+                          src={previewLogo}
+                          alt=""
+                          title="Preview"
+                          onClick={getIdAuthorPreviewHandle}
+                        />
+                      &lt;/DialogTrigger>
+
+                      &lt;Dialog.Portal>
+                        &lt;DialogOverlay>
+                          &lt;ModalBox>
+                            &lt;DialogTitle>Visualizando&lt;/DialogTitle>
+                            &lt;Dialog.Description>&lt;/Dialog.Description>
+
+                            &lt;ViewInfoDinamic>
+                              &lt;ItemModal>
+                                &lt;h4>
+                                  &lt;strong>Nome do autor:&lt;/strong>
+                                &lt;/h4>
+                                &lt;p>{filterIdAuthorPreview?.author}&lt;/p>
+                              &lt;/ItemModal>
+                              &lt;ItemModal>
+                                &lt;h4>
+                                  &lt;strong>Email:&lt;/strong>
+                                &lt;/h4>
+                                &lt;p>{filterIdAuthorPreview?.email}&lt;/p>
+                              &lt;/ItemModal>
+                              &lt;ItemModal>
+                                &lt;h4>
+                                  &lt;strong>Criado em:&lt;/strong>
+                                &lt;/h4>
+                                &lt;p>{filterIdAuthorPreview?.date}&lt;/p>
+                              &lt;/ItemModal>
+                              &lt;ItemModal>
+                                &lt;h4>
+                                  &lt;strong>Id: &lt;/strong>
+                                &lt;/h4>
+                                &lt;p>{getIdPreview}&lt;/p>
+                              &lt;/ItemModal>
+                            &lt;/ViewInfoDinamic>
+
+                            &lt;ModalActions>
+                              &lt;Dialog.Close asChild>
+                                &lt;button>Fechar&lt;/button>
+                              &lt;/Dialog.Close>
+                            &lt;/ModalActions>
+                          &lt;/ModalBox>
+                        &lt;/DialogOverlay>
+                      &lt;/Dialog.Portal>
+                    &lt;/Dialog.Root>
+                  );
                 }
 
-                
-                useEffect(() => {
-                  setGetIdPreview(authorIdPreview);
-                }, [authorIdPreview]);
-
-                return (
-                  &lt;Dialog.Root>
-                    &lt;DialogTrigger>
-                      &lt;img
-                        src={previewLogo}
-                        alt=""
-                        title="Preview"
-                        onClick={getIdAuthorPreviewHandle}
-                      />
-                    &lt;/DialogTrigger>
-
-                    &lt;Dialog.Portal>
-                      &lt;DialogOverlay>
-                        &lt;ModalBox>
-                          &lt;DialogTitle>Visualizando&lt;/DialogTitle>
-                          &lt;Dialog.Description>&lt;/Dialog.Description>
-
-                          &lt;ViewInfoDinamic>
-                            &lt;ItemModal>
-                              &lt;h4>
-                                &lt;strong>Nome do autor:&lt;/strong>
-                              &lt;/h4>
-                              &lt;p>{filterIdAuthorPreview?.author}&lt;/p>
-                            &lt;/ItemModal>
-                            &lt;ItemModal>
-                              &lt;h4>
-                                &lt;strong>Email:&lt;/strong>
-                              &lt;/h4>
-                              &lt;p>{filterIdAuthorPreview?.email}&lt;/p>
-                            &lt;/ItemModal>
-                            &lt;ItemModal>
-                              &lt;h4>
-                                &lt;strong>Criado em:&lt;/strong>
-                              &lt;/h4>
-                              &lt;p>{filterIdAuthorPreview?.date}&lt;/p>
-                            &lt;/ItemModal>
-                            &lt;ItemModal>
-                              &lt;h4>
-                                &lt;strong>Id: &lt;/strong>
-                              &lt;/h4>
-                              &lt;p>{getIdPreview}&lt;/p>
-                            &lt;/ItemModal>
-                          &lt;/ViewInfoDinamic>
-
-                          &lt;ModalActions>
-                            &lt;Dialog.Close asChild>
-                              &lt;button>Fechar&lt;/button>
-                            &lt;/Dialog.Close>
-                          &lt;/ModalActions>
-                        &lt;/ModalBox>
-                      &lt;/DialogOverlay>
-                    &lt;/Dialog.Portal>
-                  &lt;/Dialog.Root>
-                );
-              }
-
-              Preview.propTypes = {
-                authorIdPreview: PropTypes.number.isRequired,
-              };
+                Preview.propTypes = {
+                  authorIdPreview: PropTypes.number.isRequired,
+                };
             </code>
           </pre>
         </article>
@@ -168,7 +166,7 @@
     <footer>
       Documentation generated by
       <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Mon Jan 27
-      2025 09:37:51 GMT-0300 (Horário Padrão de Brasília)
+      2025 11:09:33 GMT-0300 (Horário Padrão de Brasília)
     </footer>
 
     <script>

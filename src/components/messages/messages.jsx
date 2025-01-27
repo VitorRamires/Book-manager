@@ -2,11 +2,11 @@ import { MessageStyle } from "../styles/message";
 import PropTypes from "prop-types";
 
 /**
- * Component to display message if not exist author or book on list
+ * Component to display a message when no authors or books are available
  *
  * @param {Object} props - React component props
- * @param {string} image - Empty list image URL of book or author
- * @param {string} section - Indicate the section
+ * @param {string} props.image - URL of the image to display
+ * @param {string} props.section - Section name to display in the message
  * @returns {JSX.Element}
  */
 export function Message({ image, section }) {

@@ -14,7 +14,7 @@ import { useForm } from "react-hook-form";
 /**
  * Context managing global author state
  */
-export const CreateGlobalAuthors = createContext({});
+export const CreateGlobalAuthors = createContext(/** @type {GlobalContextValue} */ ({}));
 
 /**
  * Global Context to manage author

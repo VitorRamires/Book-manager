@@ -4,18 +4,27 @@ import { useForm } from "react-hook-form";
 
 /**
  * @typedef {Object} Book
- * @property {string} name
- * @property {number} pages
- * @property {number} id
- * @property {string} authorId
- * @property {string} date
- *
+ * @property {string} name - The name of the book
+ * @property {number} pages - The number of pages in the book
+ * @property {number} id - The unique identifier for the book
+ * @property {string} authorId - The unique identifier for the author of the book
+ * @property {string} authorName - The name of the author of the book
+ * @property {string} date - The date the book was created
+ */
+
+/**
+ * @typedef {Object} GlobalContextValue
+ * @property {Book[]} books - The list of books
+ * @property {function} setBooks - Function to set the list of books
+ * @property {function} createBookHandle - Function to create a new book
+ * @property {number} ids - The current ID counter
+ * @property {Object} formMethods - The form methods from react-hook-form
  */
 
 /**
  * Context managing global book state
  */
-export const CreateGlobalContext = createContext({});
+export const CreateGlobalContext = createContext(/** @type {GlobalContextValue} */ ({}));
 
 /**
  * Global Context to manage books
@@ -51,7 +60,6 @@ export function ContextGlobal({ children }) {
    */
   function createBookHandle(data) {
     setIds(ids + 1);
-    console.log(data);
 
     const newBook = {
       name: data.bookName,
@@ -65,6 +73,7 @@ export function ContextGlobal({ children }) {
     localStorage.setItem("books", JSON.stringify([...books, newBook]));
     formMethods.reset();
   }
+
 
   return (
     <CreateGlobalContext.Provider
