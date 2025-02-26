@@ -107,13 +107,6 @@ export const NavBox = styled.div`
   }
 `;
 
-export const Logo = styled.div`
-  img {
-    width: 300px;
-    max-width: 100%;
-    height: auto;
-  }
-`;
 
 export const Arrow = styled.div`
   display: none;

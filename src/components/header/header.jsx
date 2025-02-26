@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { NavHeader, NavBox, Menu, Arrow, Logo } from "../styles/header.js";
+import { NavHeader, NavBox, Menu, Arrow } from "../styles/header.js";
 import { useState } from "react";
-import logo from "../../img/logo.png";
 import arrow from "../../img/arrow.svg";
 
 /**
@@ -53,10 +52,6 @@ export function Header() {
             <NavLink to="/autores">Autores</NavLink>
           </NavBox>
         </Menu>
-
-        <Logo>
-          <img className="logo" src={logo} alt="logo contato seguro" />
-        </Logo>
       </NavHeader>
 
       <Arrow onClick={toggleMenu} className={menuOpenened ? "rotate" : ""}>
