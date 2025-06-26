@@ -26,52 +26,12 @@
           <pre class="prettyprint source linenums">
             <code>
               import { NavLink } from "react-router-dom";
-              import { NavHeader, NavBox, Menu, Arrow, Logo } from "../styles/header.js";
+              import { NavHeader, NavBox, Menu } from "../styles/header.js";
               import { useState } from "react";
-              import logo from "../../img/logo.png";
-              import arrow from "../../img/arrow.svg";
-
-              /**
-              * Component to display Header
-              *
-              * @returns {JSX.Element}
-              */
-              export function Header() {
-                const [menuOpenened, setMenuOpened] = useState(false);
-                const [resized, setResized] = useState(null);
-                const mobileSizeChanger = 885;
-
-                /**
-                * Function handle to change the menu state
-                *
-                * @returns {void}
-                */
-                function toggleMenu() {
-                  setMenuOpened(!menuOpenened);
-                }
-
-                /**
-                * Function handle to observe size screen and change state
-                *
-                * @returns {void}
-                */
-                function verifySizeScreen() {
-                  let widthWindow = window.innerWidth;
-                  if (mobileSizeChanger &lt;= widthWindow) {
-                    setResized(false);
-                  } else {
-                    setResized(true);
-                  }
-                }
-                window.addEventListener("resize", verifySizeScreen);
-
+  
                 return (
                   &lt;>
-                    &lt;NavHeader
-                      className={
-                        resized ? (menuOpenened ? "menu-mobile-on" : "menu-mobile-off") : ""
-                      }
-                    >
+                    &lt;NavHeader>
                       &lt;Menu className="mobile-elements">
                         &lt;h3>Gerenciador de livros&lt;/h3>
 
@@ -80,15 +40,7 @@
                           &lt;NavLink to="/autores">Autores&lt;/NavLink>
                         &lt;/NavBox>
                       &lt;/Menu>
-
-                      &lt;Logo>
-                        &lt;img className="logo" src={logo} alt="logo contato seguro" />
-                      &lt;/Logo>
                     &lt;/NavHeader>
-
-                    &lt;Arrow onClick={toggleMenu} className={menuOpenened ? "rotate" : ""}>
-                      &lt;img src={arrow} alt="logo contato seguro" />
-                    &lt;/Arrow>
                   &lt;/>
                 );
               }

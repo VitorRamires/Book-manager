@@ -107,21 +107,3 @@ export const NavBox = styled.div`
 `;
 
 
-export const Arrow = styled.div`
-  display: none;
-  width: 100px;
-  position: relative;
-  left: 50%;
-  transform: translate(-50%, 0);
-  bottom: 35px;
-  transition: 0.2s;
-  cursor: pointer;
-
-  &.rotate {
-    transform: translate(-50%, 0) rotate(180deg);
-  }
-
-  @media screen and (max-width: 885px) {
-    display: block;
-  }
-`;
