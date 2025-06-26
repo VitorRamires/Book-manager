@@ -14,7 +14,6 @@ export const NavHeader = styled.nav`
   justify-content: space-between;
 
   @media screen and (max-width: 885px) {
-    height: 525px;
     flex-direction: column-reverse;
     text-align: center;
     gap: 35px;
