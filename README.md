@@ -1,12 +1,48 @@
-# Gerenciador de livros
 
-Este projeto é um gerenciador de livros no qual temos funcionalidades de criar, editar, remover, visualizar, filtrar e ordenar livros e autores. Os livros são diretamente ligados a seus respectivos autores, deletando um autor, deleta-se todos os livros referentes aquele autor. 
+<h2>Book Manager</h2>
+<br />
+Aplicação para gerenciamento de livros e autores. Permite criar, editar, remover, visualizar, filtrar e ordenar registros. Cada livro está vinculado a um autor — ao excluir um autor, todos os livros relacionados são removidos automaticamente.
+<br />
+<br />
 
-Neste projeto, foi utilizado como tecnologia principal o React (JSX), utilizando os principais hooks da biblioteca e tambem a criação de hooks de contexto global; já para estilização foi utilizado styled-components para melhor manipulação dos estilos. O projeto foi documentado utilizando JSDoc, documentação a qual encontra-se na pasta docs. Também foi utilizado React-hook-form para lidar com a manipulação dos formulários e o Radix UI para lidar com componentes mais voltados a estilização.
+🎯 Objetivo
+<br/>
+Desenvolver uma aplicação funcional para gerenciar livros e autores, com operações completas de CRUD focado em:
 
-O projeto procurou seguir as boas práticas em React como a reutilização de código e componentes, a prática da responsabilidade única e o uso de nomenclaturas descritivas.
+<ul>
+<li>Implementar relacionamento direto entre livros e autores, garantindo que a exclusão de um autor remova automaticamente seus livros.</li>
+<li>Utilizar React com foco em boas práticas, como reutilização de componentes, responsabilidade única e nomenclaturas descritivas.</li>
+<li>Aplicar hooks nativos e contextos globais para gerenciamento de estado e lógica compartilhada.</li>
+<li>Estilizar a aplicação com styled-components, permitindo maior controle e dinamismo nos estilos.</li>
+<li>Integrar React Hook Form para manipulação eficiente de formulários.</li>
+<li>Utilizar Radix UI para componentes acessíveis e visualmente consistentes.</li>
+<li>Documentar o projeto com JSDoc, facilitando manutenção e entendimento do código.</li>
+</ul>
+
+<br/>
+
+<br />
+⚙️ Tecnologias Utilizadas
+<ul>
+  <li>React (JSX): estrutura principal da aplicação</li>
+  <li>Hooks: useState, useEffect, useContext + criação de contextos globais</li>
+  <li>Styled-components: estilização com escopo e dinamismo</li>
+  <li>React Hook Form: gerenciamento de formulários</li>
+  <li>Radix UI: componentes acessíveis e estilizados</li>
+  <li>JSDoc: documentação do código (localizada na pasta /docs)</li>
+</ul>
 
 
-Para rodar o projeto, basta no terminal digitar o comando "npm run dev". E para instalar as dependências, basta digitar no terminal "npm install"
+</br>
+
+✒️ Autores
+<br />
+Vitor Martins Ramires - Desenvolvedor principal
+
+
+
+
+
+
 
 
