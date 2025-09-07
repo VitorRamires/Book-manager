@@ -27,7 +27,6 @@ export function Filters({
   name,
   handleFilter,
   id,
-  message,
 }) {
   const inputRef = useRef(null);
 
@@ -65,13 +64,13 @@ export function Filters({
           className={buttonActive === name ? "activated-button" : ""}
           onClick={() => handleFilterClick(name)}
         >
-          Filtrar por nome: {message}
+          Filtrar por nome
         </button>
         <button
           className={buttonActive === id ? "activated-button" : ""}
           onClick={() => handleFilterClick(id)}
         >
-          Filtrar por ID: {message}
+          Filtrar por ID
         </button>
         <button
           className={buttonActive === "all" ? "activated-button" : ""}

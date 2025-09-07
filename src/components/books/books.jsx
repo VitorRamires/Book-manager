@@ -4,14 +4,9 @@ import { CreateGlobalAuthors } from "../../context/globalContextAuthors.jsx";
 import { Table } from "../Table.jsx";
 import { Book } from "./book.jsx";
 
-
 import * as Dialog from "@radix-ui/react-dialog";
 import { DialogOverlay, ModalBox } from "../../global.js";
-import {
-  ItemModal,
-  ModalActions,
-  DialogTrigger,
-} from "../styles/tables.js";
+import { ItemModal, ModalActions, DialogTrigger } from "../styles/tables.js";
 import { Center } from "../../global.js";
 import img from "../../img/book.svg";
 
@@ -71,7 +66,6 @@ export function Books() {
                   name="authors"
                   id="authors"
                   {...register("author", { required: true })}
-                  defaultValue="Selecione o autor"
                 >
                   {authors.length != 0 ? (
                     authors.map((author) => {
@@ -82,9 +76,7 @@ export function Books() {
                       );
                     })
                   ) : (
-                    <option value="Selecione seu autor">
-                      Selecione seu autor
-                    </option>
+                    <option value="">Selecione seu autor</option>
                   )}
                 </select>
               </ItemModal>
