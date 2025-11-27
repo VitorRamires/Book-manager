@@ -1,10 +1,10 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import styled from "styled-components";
 
-
 export const DialogTrigger = styled(Dialog.Trigger)`
   cursor: pointer;
-  background-color: transparent;
+  background-color: #fff;
+  width: 50px;
 `;
 
 export const ItemModal = styled.div`
@@ -48,8 +48,7 @@ export const ViewInfo = styled.div`
 
 export const ViewInfoDinamic = styled(ViewInfo).withConfig({
   shouldForwardProp: (prop) => prop !== "autoPermission",
-})`
-`;
+})``;
 
 export const ModalActions = styled.div`
   display: flex;

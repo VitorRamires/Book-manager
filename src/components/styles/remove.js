@@ -1,16 +1,14 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import styled from "styled-components";
 
-
-
-
 export const DialogDescription = styled(Dialog.Description)`
   margin-bottom: 5px;
 `;
 
 export const DialogTrigger = styled(Dialog.Trigger)`
   cursor: pointer;
-  background-color: transparent;
+  background-color: #fff;
+  width: 50px;
 `;
 
 export const ModalActions = styled.div`

@@ -1,8 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import styled from "styled-components";
 
-
-
 export const DialogTrigger = styled(Dialog.Trigger)`
   width: 200px;
   max-width: 100%;
@@ -25,7 +23,7 @@ export const DialogTrigger = styled(Dialog.Trigger)`
   -webkit-box-shadow: 0 0 0 0.35em transparent;
   box-shadow: 0 0 0 0.35em transparent;
 
-  @media screen and (max-width:350px){
+  @media screen and (max-width: 350px) {
     font-size: 1.3rem;
   }
 
@@ -91,12 +89,14 @@ export const TableWrapper = styled.div`
   width: 100%;
   overflow-x: auto;
   height: 420px;
-  padding: 10px 10px 10px 0;
+  padding: 30px;
+  background-color: #f0f0f0;
+  box-shadow: 0 0 15px 1px #0000003b;
+  border-radius: 10px;
 `;
 
 export const TableBox = styled.table`
   width: 100%;
-  border-collapse: collapse;
   font-family: "Montserrat", Sans-serif;
 
   @media screen and (max-width: 900px) {
@@ -111,10 +111,9 @@ export const TableBox = styled.table`
   }
 
   thead tr {
-    background-color: #199fe3;
+    background-color: #d7d6d6;
     font-size: 1.1rem;
-    color: #ffffff;
-    clip-path: xywh(0 0 100% 85% round 0.3em);
+    color: black;
   }
 
   tr {
@@ -126,13 +125,11 @@ export const TableBox = styled.table`
   }
 
   tbody tr {
-    border-top: 10px solid #e1eff6;
-    color: #199fe3;
-    clip-path: xywh(0 0 100% 100% round 0.3em);
+    color: #3b3b3b;
   }
 
   tbody tr:nth-child(odd) {
-    background-color: #f2f9fc;
+    background-color: #99d1f9;
   }
 
   tbody tr:nth-child(even) {
@@ -152,8 +149,8 @@ export const Actions = styled.td`
   gap: 20px;
 
   img {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     transition: 0.1s;
 
     &:hover {
@@ -179,6 +176,7 @@ export const InputFilter = styled.div`
   border-radius: 8px;
   border: 1px solid transparent;
   transition: 0.2s;
+  box-shadow: 0 0 15px 1px #0000003b;
 
   &:focus-within {
     border-color: #199fe3;
@@ -208,19 +206,19 @@ export const ButtonsFilterWrapper = styled.div`
   align-items: center;
   justify-content: start;
   gap: 15px;
-  margin-bottom:25px;
+  margin-bottom: 25px;
 
   button {
     width: max-content;
     padding: 10px 15px;
-    margin-top:5px;
+    margin-top: 5px;
     font-family: "Montserrat";
     background-color: #a1a1a1;
     color: #ffffff;
     cursor: pointer;
     transition: 0.2s;
 
-    @media screen and (max-width:377px){
+    @media screen and (max-width: 377px) {
       width: 100%;
     }
 
@@ -232,11 +230,11 @@ export const ButtonsFilterWrapper = styled.div`
 
 export const SortButton = styled.button`
   width: 170px;
-  max-width:100%;
+  max-width: 100%;
   padding: 10px 5px;
-  background-color:#bdbdbd;
-  color:#ffffff;
-  margin-top:15px;
+  background-color: #bdbdbd;
+  color: #ffffff;
+  margin-top: 15px;
   cursor: pointer;
   font-family: "Montserrat";
 `;

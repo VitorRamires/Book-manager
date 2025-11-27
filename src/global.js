@@ -32,7 +32,7 @@ export const GlobalCss = createGlobalStyle`
     padding:5px;
   }
 
-  button, a, input:not(.input-filter), select{
+  button, input:not(.input-filter), select{
     border: 1px solid transparent;
     border-radius: 5px;
       &:focus{
@@ -79,18 +79,15 @@ export const GlobalCss = createGlobalStyle`
 
 `;
 
-// Componente centralizado para o layout principal
 export const Center = styled.div`
   position: relative;
   width: 1360px;
   max-width: 90%;
   margin: 75px auto;
-  padding: 25px;
   border-radius: 10px;
-  background-color: #e1eff6;
   bottom: 15px;
 
-  @media screen and (max-width:885px){
+  @media screen and (max-width: 885px) {
     margin: 25px auto;
   }
 `;
@@ -99,7 +96,7 @@ export const Center = styled.div`
 export const DialogOverlay = styled(Dialog.Overlay)`
   width: 100%;
   height: 100%;
-  background-color:rgba(0, 0, 0, 0.51);
+  background-color: rgba(0, 0, 0, 0.51);
   position: fixed;
   inset: 0;
   animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);

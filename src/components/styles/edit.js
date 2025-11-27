@@ -32,7 +32,8 @@ export const ModalBox = styled(Dialog.Content)`
 
 export const DialogTrigger = styled(Dialog.Trigger)`
   cursor: pointer;
-  background-color: transparent;
+  background-color: #fff;
+  width: 50px;
 `;
 
 export const ItemModal = styled.div`
@@ -44,8 +45,6 @@ export const ItemModal = styled.div`
   gap: 5px;
   width: 100%;
   margin: 40px 0;
-
-
 `;
 export const ModalActions = styled.div`
   display: flex;

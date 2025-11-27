@@ -16,12 +16,14 @@ export function App() {
     <ContextAuthors>
       <ContextGlobal>
         <BrowserRouter>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Books />} />
-            <Route path="/autores" element={<Authors />} />
-          </Routes>
-          <GlobalCss />
+          <div className="panel">
+            <Header />
+            <Routes>
+              <Route path="/" element={<Books />} />
+              <Route path="/autores" element={<Authors />} />
+            </Routes>
+            <GlobalCss />
+          </div>
         </BrowserRouter>
       </ContextGlobal>
     </ContextAuthors>

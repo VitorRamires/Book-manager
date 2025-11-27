@@ -4,9 +4,9 @@ export const NavHeader = styled.nav`
   position: relative;
   top: 0;
   width: 100%;
-  background: #1e4175;
+  background: #82b8ff;
   font-size: 1.5rem;
-  padding: 50px 25px;
+  padding: 25px 25px;
   color: #ffffff;
   transition: 0.5s;
   display: flex;
@@ -19,21 +19,11 @@ export const NavHeader = styled.nav`
     gap: 35px;
   }
 
-  &.menu-mobile-on {
-    height: 200px;
-    overflow: hidden;
-    transition: 0.5s;
-
-    .mobile-elements {
-      display: none;
-    }
-
-    .logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
+  .logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   h3 {
@@ -48,20 +38,38 @@ export const NavHeader = styled.nav`
 
   a {
     position: relative;
-    width: 130px;
-    max-width: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
     color: #acacac;
     vertical-align: middle;
     text-decoration: none;
-    height: 100%;
-    transition: 0.1s;
     border-radius: 5px 0 0 5px;
-    padding: 15px;
-    background-color: #ececec;
     font-size: 1.4rem;
+    transition: 0.2s;
+
+    &:hover img {
+      transform: translateY(-5px);
+      background-color: #9dc7ff;
+    }
+
+    img {
+      width: 105px;
+      height: 65px;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 9px;
+      transition: 0.3s;
+    }
+
+    .navIcon-wrapper {
+      width: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      color: #ffffff;
+      font-size: 1.1rem;
+    }
 
     @media screen and (max-width: 885px) {
       width: 100%;
@@ -72,19 +80,28 @@ export const NavHeader = styled.nav`
   a:last-child {
     border-radius: 0 5px 5px 0;
 
+    & img {
+      padding: 12px;
+    }
+
     @media screen and (max-width: 885px) {
       border-radius: 0;
     }
   }
 
   a.active {
-    background-color: #199fe3;
     color: #ffffff;
+    & img {
+      background-color: #9dc7ff;
+      box-shadow: 0 0 5px 0 #0000003b;
+    }
   }
 `;
 
 export const Menu = styled.div`
-  padding: 0 40px;
+  width: 1360px;
+  max-width: 100%;
+  margin: 0 auto;
 
   @media screen and (max-width: 885px) {
     width: 550px;
@@ -96,14 +113,13 @@ export const Menu = styled.div`
 
 export const NavBox = styled.div`
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: start;
   font-family: "Montserrat", Sans-serif;
+  gap: 45px;
 
   @media screen and (max-width: 885px) {
     width: 100%;
     flex-wrap: wrap;
   }
 `;
-
-
