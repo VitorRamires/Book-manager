@@ -71,9 +71,8 @@ export const NavHeader = styled.nav`
       font-size: 1.1rem;
     }
 
-    @media screen and (max-width: 885px) {
+    @media screen and (max-width: 301px) {
       width: 100%;
-      border-radius: 0;
     }
   }
 
@@ -121,5 +120,6 @@ export const NavBox = styled.div`
   @media screen and (max-width: 885px) {
     width: 100%;
     flex-wrap: wrap;
+    gap: 25px;
   }
 `;
