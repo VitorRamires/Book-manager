@@ -1,11 +1,10 @@
 import { useContext, useRef } from "react";
 import { CreateGlobalAuthors } from "../../context/globalContextAuthors.jsx";
 import { Author } from "./author.jsx";
-import { Center } from "../../global.js";
 import { Table } from "../Table.jsx";
 
 import * as Dialog from "@radix-ui/react-dialog";
-import { DialogOverlay, ModalBox } from "../../global.js";
+import { DialogOverlay, ModalBox, Center, Head  } from "../../global.js";
 import {
   ItemModal,
   ModalActions,
@@ -28,7 +27,7 @@ export function Authors() {
     setAuthorNotExistMessage,
   } = useContext(CreateGlobalAuthors);
   const { handleSubmit, register } = formMethods;
-  const headRef = useRef()
+  const headRef = useRef();
 
   /**
    * Function to reset the form
@@ -41,9 +40,9 @@ export function Authors() {
   return (
     <Center>
       <Dialog.Root>
-        <div className="head" ref={headRef}>
+        <Head className="head" ref={headRef}>
           <DialogTrigger onClick={resetForm}>Criar Autor</DialogTrigger>
-        </div>
+        </Head>
 
         <DialogOverlay>
           <ModalBox>

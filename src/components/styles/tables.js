@@ -12,7 +12,6 @@ export const DialogTrigger = styled(Dialog.Trigger)`
   border: none;
   padding: 0 15px;
   border-radius: 5px;
-  margin: 20px 0 50px 0;
   cursor: pointer;
   transition: 0.2s;
   display: flex;
@@ -22,6 +21,10 @@ export const DialogTrigger = styled(Dialog.Trigger)`
   font-family: "Montserrat", Sans-serif;
   -webkit-box-shadow: 0 0 0 0.35em transparent;
   box-shadow: 0 0 0 0.35em transparent;
+
+  @media screen and (max-width: 377px) {
+    margin: 0 auto;
+  }
 
   @media screen and (max-width: 350px) {
     font-size: 1.3rem;
@@ -201,41 +204,17 @@ export const InputFilter = styled.div`
   }
 `;
 
-export const ButtonsFilterWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: start;
-  gap: 15px;
-  margin-bottom: 25px;
-
-  button {
-    width: max-content;
-    padding: 10px 15px;
-    margin-top: 5px;
-    font-family: "Montserrat";
-    background-color: #a1a1a1;
-    color: #ffffff;
-    cursor: pointer;
-    transition: 0.2s;
-
-    @media screen and (max-width: 377px) {
-      width: 100%;
-    }
-
-    &.activated-button {
-      background-color: #126792;
-    }
-  }
-`;
-
 export const SortButton = styled.button`
-  width: 170px;
   max-width: 100%;
   padding: 10px 5px;
-  background-color: #bdbdbd;
   color: #ffffff;
-  margin-top: 15px;
+  margin: 15px 15px 0 0;
   cursor: pointer;
   font-family: "Montserrat";
+  color: black;
+  transition: 0.2s;
+
+  &:hover {
+    background-color: #e2e2e2;
+  }
 `;

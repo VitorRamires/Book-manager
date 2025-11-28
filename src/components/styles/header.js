@@ -102,13 +102,6 @@ export const Menu = styled.div`
   width: 1360px;
   max-width: 100%;
   margin: 0 auto;
-
-  @media screen and (max-width: 885px) {
-    width: 550px;
-    max-width: 100%;
-    padding: 0;
-    margin: 0 auto 35px auto;
-  }
 `;
 
 export const NavBox = styled.div`

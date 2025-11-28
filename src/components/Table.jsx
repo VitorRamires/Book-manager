@@ -39,24 +39,20 @@ export function Table({
   const [inputText, setInputText] = useState("");
   const [filterOption, setFilterOption] = useState("all");
   const [buttonActive, setButtonActive] = useState("all");
-  const [sortDirection, setSortDirection] = useState("");
+  const [sortDirection, setSortDirection] = useState("cresc");
+  const [sortDirectionId, setSortDirectionId] = useState("crescId");
 
-  /**
-   * Handles the sorting of the content
-   *
-   * @param {string} key - The key to sort by
-   */
   function handleSort(key) {
-    const direction = sortDirection === "asc" ? "desc" : "asc";
+    const direction = sortDirection === "cresc" ? "desc" : "cresc";
     setSortDirection(direction);
 
     const sortedContent = [...infoSection].sort((a, b) => {
       if (a[key] < b[key]) {
-        return direction === "asc" ? -1 : 1;
+        return direction === "cresc" ? -1 : 1;
       }
 
       if (a[key] > b[key]) {
-        return direction === "asc" ? 1 : -1;
+        return direction === "cresc" ? 1 : -1;
       }
       return 0;
     });
@@ -64,6 +60,19 @@ export function Table({
     name == "author" ? setAuthors(sortedContent) : setBooks(sortedContent);
   }
 
+  function handleSortID(key) {
+    const direction = sortDirectionId === "crescId" ? "descId" : "crescId";
+    setSortDirectionId(direction);
+
+    const sortedContent = [...infoSection].sort((a, b) => {
+      const valueA = Number(a[key]);
+      const valueB = Number(b[key]);
+
+      return direction === "crescId" ? valueA - valueB : valueB - valueA;
+    });
+
+    name === "author" ? setAuthors(sortedContent) : setBooks(sortedContent);
+  }
   /**
    * Function to manage when option filter is active and working
    *
@@ -132,7 +141,14 @@ export function Table({
 
       <SortButton onClick={() => handleSort(name)}>
         Ordenar {message} por :{" "}
-        <strong>{sortDirection === "asc" ? "A-Z" : "Z-A"}</strong>{" "}
+        <strong>{sortDirection === "cresc" ? "A-Z" : "Z-A"}</strong>{" "}
+      </SortButton>
+
+      <SortButton onClick={() => handleSortID(id)}>
+        Ordenar {message} por ID:{" "}
+        <strong>
+          {sortDirectionId === "crescId" ? "Crescente" : "Decrescente"}
+        </strong>{" "}
       </SortButton>
     </>
   );

@@ -1,7 +1,5 @@
-import {
-  InputFilter,
-  ButtonsFilterWrapper,
-} from "../components/styles/tables.js";
+import { InputFilter } from "../components/styles/tables.js";
+import { ButtonsFilterWrapper } from "../global.js";
 import lupa from "../img/lupa.svg";
 import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
@@ -55,7 +53,6 @@ export function Filters({
 
   if (!target) return null;
 
-  
   return (
     <>
       {createPortal(

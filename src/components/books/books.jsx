@@ -5,9 +5,8 @@ import { Table } from "../Table.jsx";
 import { Book } from "./book.jsx";
 
 import * as Dialog from "@radix-ui/react-dialog";
-import { DialogOverlay, ModalBox } from "../../global.js";
+import { DialogOverlay, ModalBox, Center, Head } from "../../global.js";
 import { ItemModal, ModalActions, DialogTrigger } from "../styles/tables.js";
-import { Center } from "../../global.js";
 import img from "../../img/book.svg";
 
 /**
@@ -20,7 +19,7 @@ export function Books() {
     useContext(CreateGlobalContext);
   const { authors } = useContext(CreateGlobalAuthors);
   const { handleSubmit, register } = formMethods;
-  const headRef = useRef()
+  const headRef = useRef();
 
   /**
    * Function to reset the form
@@ -32,9 +31,9 @@ export function Books() {
   return (
     <Center>
       <Dialog.Root>
-        <div className="head" ref={headRef}>
+        <Head className="head" ref={headRef}>
           <DialogTrigger onClick={resetForm}>Criar Livro</DialogTrigger>
-        </div>
+        </Head>
 
         <DialogOverlay>
           <ModalBox>

@@ -82,14 +82,10 @@ export const GlobalCss = createGlobalStyle`
 export const Center = styled.div`
   position: relative;
   width: 1360px;
-  max-width: 90%;
+  max-width: 96%;
   margin: 75px auto;
   border-radius: 10px;
   bottom: 15px;
-
-  @media screen and (max-width: 885px) {
-    margin: 25px auto;
-  }
 `;
 
 // Estilo para o overlay do diálogo modal
@@ -121,5 +117,61 @@ export const ModalBox = styled(Dialog.Content)`
 
   h2 {
     font-family: "Montserrat", Sans-serif;
+  }
+`;
+
+export const Head = styled.div`
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  border-bottom: 1px solid #dedede;
+  padding-bottom: 10px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 15px;
+
+  & .filters {
+    width: 80%;
+
+    @media screen and (max-width: 1119px) {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    & input {
+      padding: 20px 9px !important;
+    }
+  }
+`;
+
+export const ButtonsFilterWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: end;
+  gap: 5px;
+  margin-bottom: 25px;
+
+  @media screen and (max-width: 1119px) {
+    justify-content: start;
+  }
+
+  button {
+    width: max-content;
+    font-family: "Montserrat";
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.2s;
+    color: #797979;
+    font-weight: 400;
+    background-color: transparent;
+
+    @media screen and (max-width: 377px) {
+      width: 100%;
+    }
+
+    &.activated-button {
+      color: #3689f5;
+    }
   }
 `;

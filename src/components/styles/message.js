@@ -4,7 +4,7 @@ export const MessageStyle = styled.div`
   text-align: center;
   font-family: "Montserrat", Sans-serif;
   font-size: 1.4rem;
-  margin-top: 60px;
+  margin-top: 160px;
 
   @media screen and (max-width: 620px) {
     margin-top: 70px;
