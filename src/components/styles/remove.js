@@ -22,7 +22,7 @@ export const ModalActions = styled.div`
     width: 100px;
     padding: 10px 5px;
     cursor: pointer;
-    background-color: #ebebeb;
+    background-color: #adadad;
     outline: none;
     border: none;
     border-radius: 5px;
@@ -37,7 +37,7 @@ export const ModalActions = styled.div`
 
     &:disabled {
       background-color: #ebebeb;
-      color: #c4c4c4;
+      color: #797979;
       cursor: not-allowed;
     }
 
