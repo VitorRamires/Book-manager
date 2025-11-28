@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const NavHeader = styled.nav`
-  position: relative;
+  position: sticky;
+  z-index: 2;
   top: 0;
   width: 100%;
   background: #82b8ff;
