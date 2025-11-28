@@ -12,6 +12,7 @@ export const NavHeader = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-shadow: 0 3px 5px 0 #0000003b;
 
   @media screen and (max-width: 885px) {
     flex-direction: column-reverse;

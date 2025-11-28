@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { CreateGlobalAuthors } from "../../context/globalContextAuthors.jsx";
 import { Author } from "./author.jsx";
 import { Center } from "../../global.js";
@@ -28,6 +28,7 @@ export function Authors() {
     setAuthorNotExistMessage,
   } = useContext(CreateGlobalAuthors);
   const { handleSubmit, register } = formMethods;
+  const headRef = useRef()
 
   /**
    * Function to reset the form
@@ -40,9 +41,10 @@ export function Authors() {
   return (
     <Center>
       <Dialog.Root>
-        <DialogTrigger onClick={resetForm}>
-          Criar Autor <span>+</span>
-        </DialogTrigger>
+        <div className="head" ref={headRef}>
+          <DialogTrigger onClick={resetForm}>Criar Autor</DialogTrigger>
+        </div>
+
         <DialogOverlay>
           <ModalBox>
             <Dialog.Title>Crie seu autor</Dialog.Title>
@@ -86,6 +88,7 @@ export function Authors() {
         message={"Autor"}
         name={"author"}
         id={"authorId"}
+        headRef={headRef}
       />
     </Center>
   );

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { CreateGlobalContext } from "../../context/globalContextBooks.jsx";
 import { CreateGlobalAuthors } from "../../context/globalContextAuthors.jsx";
 import { Table } from "../Table.jsx";
@@ -20,6 +20,7 @@ export function Books() {
     useContext(CreateGlobalContext);
   const { authors } = useContext(CreateGlobalAuthors);
   const { handleSubmit, register } = formMethods;
+  const headRef = useRef()
 
   /**
    * Function to reset the form
@@ -31,9 +32,9 @@ export function Books() {
   return (
     <Center>
       <Dialog.Root>
-        <DialogTrigger onClick={resetForm}>
-          Criar Livro <span>+</span>
-        </DialogTrigger>
+        <div className="head" ref={headRef}>
+          <DialogTrigger onClick={resetForm}>Criar Livro</DialogTrigger>
+        </div>
 
         <DialogOverlay>
           <ModalBox>
@@ -99,6 +100,7 @@ export function Books() {
         message={"Livro"}
         name={"name"}
         id={"id"}
+        headRef={headRef}
       />
     </Center>
   );

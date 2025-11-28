@@ -88,7 +88,7 @@ export const ModalActions = styled.div`
 export const TableWrapper = styled.div`
   width: 100%;
   overflow-x: auto;
-  height: 420px;
+  height: 620px;
   padding: 30px;
   background-color: #f0f0f0;
   box-shadow: 0 0 15px 1px #0000003b;
@@ -118,6 +118,7 @@ export const TableBox = styled.table`
 
   tr {
     width: 100%;
+    font-size: 0.9rem;
   }
 
   tbody {
@@ -137,7 +138,7 @@ export const TableBox = styled.table`
   }
 
   td {
-    padding: 15px;
+    padding: 10px;
     position: relative;
   }
 `;

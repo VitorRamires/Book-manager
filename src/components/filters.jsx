@@ -4,12 +4,12 @@ import {
 } from "../components/styles/tables.js";
 import lupa from "../img/lupa.svg";
 import PropTypes from "prop-types";
-import { useRef } from "react";
-
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 /**
  * Component to display input and buttons filters
- * 
+ *
  * @param {Object} props - React component props
  * @param {string} props.inputText - value of input when digited
  * @param {Function} props.setInputText - Method to save the value of inputText
@@ -27,8 +27,10 @@ export function Filters({
   name,
   handleFilter,
   id,
+  headRef,
 }) {
   const inputRef = useRef(null);
+  const [target, setTarget] = useState();
 
   /**
    * Function to focus when click on button filter
@@ -36,6 +38,7 @@ export function Filters({
    * @param {string} filterOption
    * @return {void}
    */
+
   const handleFilterClick = (filterOption) => {
     handleFilter(filterOption);
     if (inputRef.current) {
@@ -43,42 +46,57 @@ export function Filters({
     }
   };
 
+  // Render the filter elements on another div if itself exist
+  useEffect(() => {
+    if (headRef?.current) {
+      setTarget(headRef.current);
+    }
+  }, [headRef]);
+
+  if (!target) return null;
+
+  
   return (
     <>
-      <InputFilter className="filter-info">
-        <input
-          type="text"
-          className="input-filter"
-          value={inputText}
-          onChange={({ target }) => {
-            setInputText(target.value);
-          }}
-          placeholder="Ao selecionar um filtro digite aqui para filtrar"
-          ref={inputRef}
-        />
-        <img src={lupa} alt="" />
-      </InputFilter>
+      {createPortal(
+        <div className="filters">
+          <InputFilter className="filter-info">
+            <input
+              type="text"
+              className="input-filter"
+              value={inputText}
+              onChange={({ target }) => {
+                setInputText(target.value);
+              }}
+              placeholder="Ao selecionar um filtro digite aqui para filtrar"
+              ref={inputRef}
+            />
+            <img src={lupa} alt="" />
+          </InputFilter>
 
-      <ButtonsFilterWrapper>
-        <button
-          className={buttonActive === name ? "activated-button" : ""}
-          onClick={() => handleFilterClick(name)}
-        >
-          Filtrar por nome
-        </button>
-        <button
-          className={buttonActive === id ? "activated-button" : ""}
-          onClick={() => handleFilterClick(id)}
-        >
-          Filtrar por ID
-        </button>
-        <button
-          className={buttonActive === "all" ? "activated-button" : ""}
-          onClick={() => handleFilterClick("all")}
-        >
-          Sem filtros
-        </button>
-      </ButtonsFilterWrapper>
+          <ButtonsFilterWrapper>
+            <button
+              className={buttonActive === name ? "activated-button" : ""}
+              onClick={() => handleFilterClick(name)}
+            >
+              Filtrar por nome
+            </button>
+            <button
+              className={buttonActive === id ? "activated-button" : ""}
+              onClick={() => handleFilterClick(id)}
+            >
+              Filtrar por ID
+            </button>
+            <button
+              className={buttonActive === "all" ? "activated-button" : ""}
+              onClick={() => handleFilterClick("all")}
+            >
+              Sem filtros
+            </button>
+          </ButtonsFilterWrapper>
+        </div>,
+        document.querySelector(".head")
+      )}
     </>
   );
 }
@@ -92,4 +110,7 @@ Filters.propTypes = {
   handleFilter: PropTypes.func.isRequired,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   message: PropTypes.string.isRequired,
+  headRef: PropTypes.shape({
+    current: PropTypes.any,
+  }),
 };

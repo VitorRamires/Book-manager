@@ -1,7 +1,11 @@
 import { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import { Message } from "../components/messages/messages.jsx";
-import { TableBox, TableWrapper, SortButton } from "../components/styles/tables.js";
+import {
+  TableBox,
+  TableWrapper,
+  SortButton,
+} from "../components/styles/tables.js";
 import { Filters } from "./filters.jsx";
 import { CreateGlobalContext } from "../context/globalContextBooks.jsx";
 import { CreateGlobalAuthors } from "../context/globalContextAuthors.jsx";
@@ -27,6 +31,7 @@ export function Table({
   message,
   name,
   id,
+  headRef,
 }) {
   const { setBooks } = useContext(CreateGlobalContext);
   const { setAuthors } = useContext(CreateGlobalAuthors);
@@ -98,6 +103,7 @@ export function Table({
         id={id}
         inputText={inputText}
         message={message}
+        headRef={headRef}
       />
 
       <TableWrapper>
@@ -124,7 +130,10 @@ export function Table({
         )}
       </TableWrapper>
 
-      <SortButton onClick={() => handleSort(name)}>Ordenar {message} por : <strong>{sortDirection === "asc" ? "A-Z" : "Z-A"}</strong> </SortButton>
+      <SortButton onClick={() => handleSort(name)}>
+        Ordenar {message} por :{" "}
+        <strong>{sortDirection === "asc" ? "A-Z" : "Z-A"}</strong>{" "}
+      </SortButton>
     </>
   );
 }
@@ -137,4 +146,7 @@ Table.propTypes = {
   message: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  headRef: PropTypes.shape({
+    current: PropTypes.any,
+  }),
 };
